@@ -1,29 +1,18 @@
-type ThemeVariables = {
-  bg_main: string;
-};
-
-type Theme = 'light';
-type VariableKey = keyof ThemeVariables;
-type ThemedPalette = Record<VariableKey, string>;
+import palette from './palette';
+import { Theme, ThemedPalette, ThemeVariables, VariableKey } from './types';
+import { buildCssVariables, cssVar } from './utilities';
 
 const themeVariableSets: Record<Theme, ThemeVariables> = {
   light: {
-    bg_main: 'red',
+    bg_main: palette.grey[10],
   },
 };
 
-const buildCssVariables = (variables: ThemeVariables) => {
-  const keys = Object.keys(variables) as (keyof ThemeVariables)[];
-  return keys.reduce((acc, key) => acc.concat(`--${key.replace(/_/g, '-')}: ${variables[key]};`, '\n'), '');
-};
+const variableKeys = Object.keys(themeVariableSets.light) as VariableKey[];
 
 export const themes = {
   light: buildCssVariables(themeVariableSets.light),
 };
-
-const cssVar = (name: string) => `var(--${name.replace(/_/g, '-')})`;
-
-const variableKeys = Object.keys(themeVariableSets.light) as VariableKey[];
 
 export const themedPalette: Record<VariableKey, string> = variableKeys.reduce((acc, current) => {
   acc[current] = cssVar(current);
