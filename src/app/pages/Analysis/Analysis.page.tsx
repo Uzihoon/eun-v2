@@ -7,7 +7,6 @@ import { t } from '~i18n';
 import { getTitle } from '../utilities';
 
 const AnalysisPage: React.FC = () => {
-  console.log('?');
   return (
     <>
       <Helmet>

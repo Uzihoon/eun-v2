@@ -10,8 +10,12 @@ export class Translation {
   }
 
   get(id: string, values?: Record<string, any>) {
-    const translation = this.intl?.formatMessage({ id }, values);
+    if (!this.hasTranslation(id)) {
+      // TODO: Add log
+      return '';
+    }
 
+    const translation = this.intl?.formatMessage({ id }, values);
     return translation;
   }
 

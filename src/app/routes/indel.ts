@@ -1,0 +1,12 @@
+import { IndelPage } from '~app/pages';
+import { INDEL } from '~env/constants';
+
+import { Route } from './type';
+
+const route: Route = {
+  path: INDEL.PATH,
+  pageId: INDEL.PAGE_ID,
+  element: IndelPage,
+};
+
+export default route;
