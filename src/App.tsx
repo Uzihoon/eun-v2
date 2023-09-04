@@ -2,6 +2,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Layout from '~app/components/Layout';
 import { NoMatchPage } from '~app/pages';
 import routes from '~app/routes';
+import GlobalStyle from './GlobalStyle';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="*" element={<NoMatchPage />} />
         </Route>
       </Routes>
+      <GlobalStyle />
     </BrowserRouter>
   );
 }

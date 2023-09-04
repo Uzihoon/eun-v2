@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { initIntl, t } from '~i18n';
 
-import './styles/index.scss';
+import './css/index.scss';
 
 export const run = async () => {
   const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
