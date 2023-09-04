@@ -11,7 +11,6 @@ export class Translation {
 
   get(id: string, values?: Record<string, any>) {
     if (!this.hasTranslation(id)) {
-      // TODO: Add log
       return '';
     }
 
