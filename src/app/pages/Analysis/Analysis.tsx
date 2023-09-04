@@ -1,15 +1,20 @@
 import { Helmet } from 'react-helmet-async';
-import Analysis from '~components/Analysis';
-import { title } from '~routes/analysis';
+
+import Analysis from '~app/components/Analysis';
+import { ANALYSIS } from '~env/constants';
+
 import { getTitle } from '../utilities';
 
-const AnalysisPage: React.FC = () => (
-  <>
-    <Helmet>
-      <title>{getTitle(title)}</title>
-    </Helmet>
-    <Analysis />
-  </>
-);
+const AnalysisPage: React.FC = () => {
+  console.log('?');
+  return (
+    <>
+      <Helmet>
+        <title>{getTitle(ANALYSIS.TITLE_ID)}</title>
+      </Helmet>
+      <Analysis />
+    </>
+  );
+};
 
 export default AnalysisPage;

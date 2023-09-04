@@ -1,22 +1,12 @@
-import Analysis from '~pages/Analysis';
-import { ANALYSIS } from '~constants/page';
+import { AnalysisPage } from '~app/pages';
+import { ANALYSIS } from '~env/constants';
 
-import { Route, Item } from './type';
-
-const items: Item[] = [
-  {
-    path: '/',
-    component: Analysis,
-    title: ANALYSIS.TITLE_ID,
-    exact: true,
-    rootURL: true,
-  },
-];
+import { Route } from './type';
 
 const route: Route = {
+  path: ANALYSIS.PATH,
   pageId: ANALYSIS.PAGE_ID,
-  title: ANALYSIS.TITLE_ID,
-  items,
+  element: AnalysisPage,
 };
 
 export default route;
