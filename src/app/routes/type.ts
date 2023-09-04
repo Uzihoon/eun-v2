@@ -1,6 +1,7 @@
 export interface Route {
   element: React.FC<any>;
+  title: string;
   pageId: string;
-  path?: string;
+  path: string;
   index?: boolean;
 }

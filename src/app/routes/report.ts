@@ -6,6 +6,7 @@ import { Route } from './type';
 const route: Route = {
   path: REPORT.PATH,
   pageId: REPORT.PAGE_ID,
+  title: REPORT.TITLE_ID,
   element: ReportPage,
 };
 

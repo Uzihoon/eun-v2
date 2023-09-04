@@ -1,0 +1,85 @@
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-center-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.flex-center-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.flex-ver-center {
+  display: flex;
+  align-items: center;
+}
+
+.flex-hor-center {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-col-dir {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-center-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-top-between {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.flex-top-center {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.flex-height-full {
+  flex: 1;
+  height: 100%;
+}
+
+.flex-width-full {
+  flex: 1;
+  width: 100%;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.error-message {
+  color: #ff5722;
+}
+
+.none-value {
+  opacity: 0.3;
+}
+
+.link-text {
+  color: #0072e5;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 127, 255, 0.4);
+  cursor: pointer;
+}
+
+.MuiSelect-select {
+  em {
+    opacity: 0.3;
+  }
+}

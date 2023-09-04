@@ -1,4 +1,5 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import Layout from '~app/components/Layout';
 import { NoMatchPage } from '~app/pages';
 import routes from '~app/routes';
 
@@ -6,7 +7,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/">
+        <Route path="/" element={<Layout />}>
           {routes.map(({ index, path, pageId, element: Element }) => (
             <Route index={index} path={path} key={pageId} element={<Element />} />
           ))}

@@ -6,6 +6,7 @@ import { Route } from './type';
 const route: Route = {
   path: INDEL.PATH,
   pageId: INDEL.PAGE_ID,
+  title: INDEL.TITLE_ID,
   element: IndelPage,
 };
 

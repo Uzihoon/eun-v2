@@ -1,3 +1,3 @@
 export const getTitle = (title: string) => {
-  return `EUN - ${title}`;
+  return `EUN | ${title}`;
 };
