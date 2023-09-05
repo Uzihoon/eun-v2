@@ -5,6 +5,15 @@ import Bar from '../Bar';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
+const Input: React.FC<InputProps> = (props) => {
+  return (
+    <InputContainer>
+      <StyledInput {...props} />
+      <Bar />
+    </InputContainer>
+  );
+};
+
 const InputContainer = styled.div`
   max-width: 360px;
   position: relative;
@@ -40,14 +49,5 @@ const StyledInput = styled.input`
     width: 50%;
   }
 `;
-
-const Input: React.FC<InputProps> = (props) => {
-  return (
-    <InputContainer>
-      <StyledInput {...props} />
-      <Bar />
-    </InputContainer>
-  );
-};
 
 export default Input;

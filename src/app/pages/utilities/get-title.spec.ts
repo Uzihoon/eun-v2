@@ -1,8 +1,8 @@
-import { getTitle } from './get-title';
+import { getTitle, PREFIX } from './get-title';
 
 describe('Utility: getTitle', () => {
   it('should return title', () => {
-    const title = 'EUN | test';
+    const title = `${PREFIX} | test`;
     expect(getTitle('test')).toBe(title);
   });
 });

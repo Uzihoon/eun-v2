@@ -7,6 +7,28 @@ import Bar from '../Bar';
 
 interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
+const TEXT_LIMIT = 37;
+
+const TextArea: React.FC<TextAreaProps> = (props) => {
+  const [height, setHeight] = useState(TEXT_LIMIT);
+
+  const updateHeight = _.debounce((value: string) => {
+    setHeight(Math.ceil(value.length / TEXT_LIMIT) * 25);
+  }, 10);
+
+  const handleChange: React.ChangeEventHandler<HTMLTextAreaElement> = (event) => {
+    event.preventDefault();
+    updateHeight(event.target.value);
+  };
+
+  return (
+    <TextAreaContainer style={{ height: `${height}px` }}>
+      <StyledTextArea {...props} onChange={handleChange} />
+      <StyledBar />
+    </TextAreaContainer>
+  );
+};
+
 const TextAreaContainer = styled.div`
   max-width: 360px;
   position: relative;
@@ -48,27 +70,5 @@ const StyledTextArea = styled.textarea`
 const StyledBar = styled(Bar)`
   bottom: 3px;
 `;
-
-const TEXT_LIMIT = 37;
-
-const TextArea: React.FC<TextAreaProps> = (props) => {
-  const [height, setHeight] = useState(TEXT_LIMIT);
-
-  const updateHeight = _.debounce((value: string) => {
-    setHeight(Math.ceil(value.length / TEXT_LIMIT) * 25);
-  }, 10);
-
-  const handleChange: React.ChangeEventHandler<HTMLTextAreaElement> = (event) => {
-    event.preventDefault();
-    updateHeight(event.target.value);
-  };
-
-  return (
-    <TextAreaContainer style={{ height: `${height}px` }}>
-      <StyledTextArea {...props} onChange={handleChange} />
-      <StyledBar />
-    </TextAreaContainer>
-  );
-};
 
 export default TextArea;

@@ -1,5 +1,6 @@
 import Input from '~app/ui/Input';
 import TextArea from '~app/ui/TextArea';
+import Upload from '~app/ui/Upload';
 import { t } from '~i18n';
 import Form from '../Form';
 import FormField from '../FormField';
@@ -12,6 +13,9 @@ const AnalyzerForm: React.FC = () => {
       </FormField>
       <FormField label={t.get('form.label.fileIndex')} required>
         <Input placeholder={t.get('form.desc.fileIndex')} />
+      </FormField>
+      <FormField label={t.get('form.label.sequencingData')} required>
+        <Upload accept="application/gzip, .gz" />
       </FormField>
       <FormField label={t.get('form.label.fileIndex')} required>
         <Input placeholder={t.get('form.desc.fileIndex')} />

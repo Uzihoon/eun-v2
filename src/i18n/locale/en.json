@@ -19,5 +19,8 @@
   "form.desc.fileIndex": "_L001_",
   "form.desc.referenceSequence": "GGAGTTTCCAGATCTCTG...",
   "form.desc.targetSequence": "ACCTCAGTTCCCCTTCAAAG",
-  "form.desc.standardRange": "Standard Range"
+  "form.desc.standardRange": "Standard Range",
+
+  "upload.title": "Drag & drop to upload",
+  "upload.desc": "or browse"
 }

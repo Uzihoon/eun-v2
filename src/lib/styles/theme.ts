@@ -10,14 +10,18 @@ const themeVariableSets: Record<Theme, ThemeVariables> = {
     bg_paper: palette.white,
     bg_input: palette.grey.l10,
     bg_hover_input: palette.grey.l50,
+    bg_upload: palette.grey.l10,
+    bg_hover_upload: palette.grey.l50,
     border_nav: palette.grey.l200,
     border_input: palette.grey.l200,
     border_active_input: palette.point,
+    border_upload: palette.grey.l100,
     header_txt: palette.white,
     desc_txt: palette.grey.l50,
     required_txt: palette.red.l500,
     label_txt: palette.grey.l600,
     normal_txt: palette.grey.l500,
+    upload_desc_txt: palette.point,
   },
 };
 

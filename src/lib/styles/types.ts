@@ -6,11 +6,14 @@ export type ThemeVariables = {
   bg_paper: string;
   bg_input: string;
   bg_hover_input: string;
+  bg_upload: string;
+  bg_hover_upload: string;
 
   // Border
   border_nav: string;
   border_input: string;
   border_active_input: string;
+  border_upload: string;
 
   // Text
   header_txt: string;
@@ -18,6 +21,7 @@ export type ThemeVariables = {
   required_txt: string;
   label_txt: string;
   normal_txt: string;
+  upload_desc_txt: string;
 };
 
 export type Theme = 'light';
