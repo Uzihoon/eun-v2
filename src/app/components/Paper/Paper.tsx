@@ -1,7 +1,9 @@
 import { PaperContainer } from './Paper.style';
 
-const Paper: React.FC = () => {
-  return <PaperContainer>?123123123</PaperContainer>;
+interface PaperProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+const Paper: React.FC<PaperProps> = ({ children }) => {
+  return <PaperContainer>{children}</PaperContainer>;
 };
 
 export default Paper;

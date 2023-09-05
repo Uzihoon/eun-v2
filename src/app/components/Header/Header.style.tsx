@@ -19,7 +19,7 @@ export const HeaderBackground = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(138deg, #2cacd1, #2c65b1);
+  background: radial-gradient(circle at 10% 20%, rgb(210, 36, 129) 0%, rgb(152, 75, 215) 90%);
   z-index: -1;
 `;
 
@@ -35,7 +35,7 @@ export const HeaderTitle = styled.div`
 
 export const HeaderDesc = styled.div`
   color: ${themedPalette.header_txt};
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: ${themedPalette.desc_txt};
   margin-top: ${space[2]};
   opacity: 0;

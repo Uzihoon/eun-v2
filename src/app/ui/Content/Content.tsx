@@ -5,7 +5,7 @@ import Base from '../Base';
 
 const Content = styled(Base)`
   width: 80%;
-  max-width: ${breakpoints.larget};
+  max-width: ${breakpoints.medium};
   padding: ${space[2]};
 `;
 

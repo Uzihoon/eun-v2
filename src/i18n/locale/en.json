@@ -5,5 +5,19 @@
   "page.title.report": "Report",
   "page.title.noMatch": "404 Not Found",
 
-  "page.description.analyzer": "Cas Analysis provides multi-sample analysis of NGS data."
+  "page.description.analyzer": "Cas-Analyzer provides multi-sample analysis of NGS data.",
+  "page.description.convertor": "Select the convertor button to convert sequence data and download them for zip file.",
+
+  "form.label.fileName": "File Name Pattern",
+  "form.label.fileIndex": "File Index Pattern",
+  "form.label.sequencingData": "Sequencing Data (Paired-end reads)",
+  "form.label.referenceSequence": "Reference Amplicon Sequence",
+  "form.label.targetSequence": "Target DNA sequence (5' to 3', without PAM sequence)",
+  "form.label.standardRange": "Standard Range",
+
+  "form.desc.fileName": "Sample-ID",
+  "form.desc.fileIndex": "_L001_",
+  "form.desc.referenceSequence": "GGAGTTTCCAGATCTCTG...",
+  "form.desc.targetSequence": "ACCTCAGTTCCCCTTCAAAG",
+  "form.desc.standardRange": "Standard Range"
 }

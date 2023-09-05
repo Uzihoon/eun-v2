@@ -8,6 +8,7 @@ export const ANALYZER = {
 export const CONVERTOR = {
   PAGE_ID: 'convertor',
   TITLE_ID: 'page.title.convertor',
+  DESC_ID: 'page.description.convertor',
   PATH: '/convertor',
 } as const;
 

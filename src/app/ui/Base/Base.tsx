@@ -1,10 +1,7 @@
-interface BaseProps {
-  className?: string;
-  children?: any;
-}
+interface BaseProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-const Base: React.FC<BaseProps> = ({ className, children }) => {
-  return <div className={className}>{children}</div>;
+const Base: React.FC<BaseProps> = ({ children, ...props }) => {
+  return <div {...props}>{children}</div>;
 };
 
 export default Base;

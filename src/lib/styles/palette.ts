@@ -38,6 +38,7 @@ const palette = {
   },
 
   white: '#ffffff',
+  point: '#d02885',
 } as const;
 
 export default palette;
