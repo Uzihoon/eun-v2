@@ -1,17 +1,17 @@
 import { styled } from 'styled-components';
+import space from '~lib/styles/space';
 import { themedPalette } from '~lib/styles/theme';
+import Base from '../Base';
 
-interface ButtonProps {
-  className?: string;
-  children: React.ReactElement;
-}
+const Button = styled(Base)`
+  transition: background 0.5s;
+  padding: ${space[1]} ${space[2]};
+  margin: 0 ${space[0]};
+  border-radius: 5px;
 
-const Button: React.FC<ButtonProps> = ({ className, children }) => {
-  return <div className={className}>{children}</div>;
-};
-
-const StyledButton = styled(Button)`
-  background-color: ${themedPalette.bg_main};
+  &:hover {
+    background-color: ${themedPalette.bg_hover};
+  }
 `;
 
-export default StyledButton;
+export default Button;

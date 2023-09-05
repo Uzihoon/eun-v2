@@ -3,5 +3,7 @@
   "page.title.convertor": "Convertor",
   "page.title.indel": "Indel",
   "page.title.report": "Report",
-  "page.title.noMatch": "404 Not Found"
+  "page.title.noMatch": "404 Not Found",
+
+  "page.description.analyzer": "Cas Analysis provides multi-sample analysis of NGS data."
 }

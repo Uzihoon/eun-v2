@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     ${themes.light}
     font-family: 'Open Sans', sans-serif !important;
-    font-size: 16px;
+    font-size: 14px;
   }
 `;
 

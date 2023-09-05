@@ -1,6 +1,7 @@
 export const ANALYZER = {
   PAGE_ID: 'analyzer',
   TITLE_ID: 'page.title.analyzer',
+  DESC_ID: 'page.description.analyzer',
   PATH: '/',
 } as const;
 
