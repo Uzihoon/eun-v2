@@ -11,6 +11,7 @@ export const NavContainer = styled.nav`
   background-color: ${themedPalette.bg_nav};
   border-bottom: 1px solid ${themedPalette.border_nav};
   padding: 0 ${space[6]};
+  position: relative;
   z-index: ${layer.nav};
   ${between};
 `;
@@ -22,6 +23,7 @@ export const Nav = styled.div`
 
 export const Selected = styled(Button)`
   font-weight: bold;
+  transition: all 0.2s;
   &:hover {
     cursor: default;
     background-color: transparent;

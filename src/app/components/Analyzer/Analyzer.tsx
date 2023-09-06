@@ -8,9 +8,7 @@ const Analyzer: React.FC = () => {
   return (
     <div>
       <Header title={t.get(ANALYZER.TITLE_ID)} desc={t.get(ANALYZER.DESC_ID)} />
-      <Paper>
-        <AnalyzerForm />
-      </Paper>
+      <AnalyzerForm />
     </div>
   );
 };

@@ -7,20 +7,19 @@ import { center } from '~lib/styles/variables';
 
 export const HeaderContainer = styled.div`
   width: 100%;
-  height: 500px;
-  position: relative;
+  top: 0;
   z-index: ${layer.header};
   overflow: hidden;
+  margin-bottom: ${space[8]};
 `;
 
 export const HeaderBackground = styled.div`
-  position: absolute;
-  top: 0;
+  position: fixed;
   left: 0;
+  top: 0;
   width: 100%;
-  height: 100%;
+  height: 570px;
   background: radial-gradient(circle at 10% 20%, rgb(210, 36, 129) 0%, rgb(152, 75, 215) 90%);
-  z-index: -1;
 `;
 
 export const HeaderTitle = styled.div`

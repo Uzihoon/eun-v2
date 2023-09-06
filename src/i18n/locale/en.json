@@ -14,6 +14,8 @@
   "form.label.referenceSequence": "Reference Amplicon Sequence",
   "form.label.targetSequence": "Target DNA sequence (5' to 3', without PAM sequence)",
   "form.label.standardRange": "Standard Range",
+  "form.label.targetNucleotide": "Target Nucleotide",
+  "form.label.desiredNucleotide": "Desired change of target nucleotide",
 
   "form.desc.fileName": "Sample-ID",
   "form.desc.fileIndex": "_L001_",
@@ -22,5 +24,7 @@
   "form.desc.standardRange": "Standard Range",
 
   "upload.title": "Drag & drop to upload",
-  "upload.desc": "or browse"
+  "upload.desc": "or browse",
+
+  "button.submit": "Submit"
 }

@@ -14,7 +14,7 @@ const Navigation: React.FC = () => {
       <Nav>
         {routes.map(({ pageId, path, title }) =>
           location.pathname === path ? (
-            <Selected>{t.get(title)}</Selected>
+            <Selected key={pageId}>{t.get(title)}</Selected>
           ) : (
             <Link to={path} key={pageId}>
               <Button>{t.get(title)}</Button>

@@ -12,8 +12,8 @@ export type ThemeVariables = {
   // Border
   border_nav: string;
   border_input: string;
-  border_active_input: string;
   border_upload: string;
+  border_radio: string;
 
   // Text
   header_txt: string;
@@ -22,6 +22,9 @@ export type ThemeVariables = {
   label_txt: string;
   normal_txt: string;
   upload_desc_txt: string;
+
+  // Point
+  primary_color: string;
 };
 
 export type Theme = 'light';

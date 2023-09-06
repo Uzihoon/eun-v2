@@ -11,7 +11,7 @@ const Label: React.FC<LabelProps> = ({ children, ...props }) => {
 const StyledLabel = styled.label`
   display: flex;
   font-size: 0.9em;
-  margin-bottom: ${space[1]};
+  margin-bottom: ${space[2]};
   color: ${themedPalette.label_txt};
   font-weight: 700;
 `;

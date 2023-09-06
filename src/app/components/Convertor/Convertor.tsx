@@ -7,7 +7,7 @@ const Convertor: React.FC = () => {
   return (
     <div>
       <Header title={t.get(CONVERTOR.TITLE_ID)} desc={t.get(CONVERTOR.DESC_ID)} />
-      <Paper />
+      {/* <Paper /> */}
     </div>
   );
 };

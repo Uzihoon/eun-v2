@@ -11,6 +11,9 @@ const space = [
   '5rem',
   '8rem',
   '10rem',
+  '13rem',
+  '15rem',
+  '17rem',
 ] as const;
 
 export default space;

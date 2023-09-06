@@ -13,7 +13,7 @@ const Bar = styled.div`
     width: 0;
     bottom: 0.5px;
     position: absolute;
-    background: ${themedPalette.border_active_input};
+    background: ${themedPalette.primary_color};
     transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
