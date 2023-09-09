@@ -35,5 +35,9 @@
   "form.required.standardRange": "Standard range must not be empty",
   "form.required.sequencingData": "Sequencing data must not be empty",
 
-  "form.invalid.standardRange": "Standard range isn't valid. It can only include numbers"
+  "form.invalid.standardRange": "Standard range isn't valid. It can only include numbers",
+  "form.invalid.sequencingData": "The number of files must be even. Please check the file again",
+
+  "alert.invalid.file.header": "We found invalid files",
+  "alert.invalid.file.content": "Some files have invalid pattern. Please check the file pattern and file name again"
 }

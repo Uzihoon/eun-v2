@@ -136,13 +136,11 @@ const FileBox = styled.div`
   padding: ${space[0]};
   cursor: pointer;
   color: ${themedPalette.file_txt};
+  transition: all 0.2s;
 
   &:hover {
     background-color: rgba(208, 40, 133, 0.04);
-
-    ${RemoveFileButton} {
-      color: ${themedPalette.normal_txt};
-    }
+    color: ${themedPalette.normal_txt};
   }
 `;
 

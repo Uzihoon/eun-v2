@@ -13,8 +13,7 @@ const AnalyzerUploadFormField: React.FC<AnalyzerUploadFormFieldProps> = ({ label
     field: { ref, ...fields },
     fieldState: { invalid, error },
   } = useController(props);
-  console.log(error);
-  console.log(fields.value);
+
   return (
     <FormField label={t.get(label)} required={!!props.rules?.required}>
       <Upload

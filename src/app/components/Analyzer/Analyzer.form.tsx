@@ -20,8 +20,12 @@ import AnalyzerRadioGroupFormField from './form-fields/Analyzer.radiogroup';
 import Disabled from '~app/ui/Disabled';
 import FormField from '../FormField';
 import { t } from '~i18n';
+import { isArray } from 'lodash';
+import useFormatAnalyzerFormData from '~app/hooks/useFormatAnalyzerFormData';
+import Alert from '~app/ui/Alert';
 
 const AnalyzerForm: React.FC = () => {
+  const { error } = useFormatAnalyzerFormData();
   const { handleSubmit, control } = useForm<AnalyzerFormValues>({
     shouldUnregister: true,
     shouldFocusError: true,
@@ -36,7 +40,13 @@ const AnalyzerForm: React.FC = () => {
   );
 
   return (
-    <Form noValidate onSubmit={onSubmit}>
+    <Form
+      noValidate
+      onSubmit={onSubmit}
+      error={
+        <Alert content={t.get('alert.invalid.file.content')} header={t.get('alert.invalid.file.header')} type="ERROR" />
+      }
+    >
       <AnalyzerInputFormField
         name={NAME_PATTERN}
         control={control}
@@ -58,11 +68,13 @@ const AnalyzerForm: React.FC = () => {
       <AnalyzerUploadFormField
         name={FILES}
         control={control}
-        defaultValue={[]}
         rules={{
           required: {
             value: true,
             message: 'form.required.sequencingData',
+          },
+          validate: {
+            isEven: (file) => (isArray(file) && file.length % 2 === 0) || 'form.invalid.sequencingData',
           },
         }}
         label="form.label.sequencingData"

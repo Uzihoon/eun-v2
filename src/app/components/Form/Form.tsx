@@ -6,12 +6,14 @@ import { FormContainer, FormFooter } from './Form.style';
 
 interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
   submitText?: string;
+  error?: React.ReactElement;
 }
 
-const Form: React.FC<FormProps> = ({ submitText, children, ...props }) => {
+const Form: React.FC<FormProps> = ({ submitText, children, error, ...props }) => {
   return (
     <FormContainer {...props}>
       <Paper>{children}</Paper>
+      {error}
       <FormFooter>
         <Button active itemType="submit">
           {submitText || t.get('button.submit')}

@@ -8,12 +8,14 @@ export type ThemeVariables = {
   bg_hover_input: string;
   bg_upload: string;
   bg_hover_upload: string;
+  bg_error_alert: string;
 
   // Border
   border_nav: string;
   border_input: string;
   border_upload: string;
   border_radio: string;
+  border_error_alert: string;
 
   // Text
   header_txt: string;
@@ -23,6 +25,7 @@ export type ThemeVariables = {
   normal_txt: string;
   upload_desc_txt: string;
   file_txt: string;
+  alert_txt: string;
 
   // Point
   primary_color: string;
