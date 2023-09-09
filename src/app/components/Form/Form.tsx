@@ -1,3 +1,4 @@
+import { UseFormRegister } from 'react-hook-form';
 import Button from '~app/ui/Button';
 import { t } from '~i18n';
 import Paper from '../Paper';
@@ -12,7 +13,9 @@ const Form: React.FC<FormProps> = ({ submitText, children, ...props }) => {
     <FormContainer {...props}>
       <Paper>{children}</Paper>
       <FormFooter>
-        <Button active>{submitText || t.get('button.submit')}</Button>
+        <Button active itemType="submit">
+          {submitText || t.get('button.submit')}
+        </Button>
       </FormFooter>
     </FormContainer>
   );

@@ -1,9 +1,18 @@
 import { css, styled } from 'styled-components';
 import space from '~lib/styles/space';
 import { themedPalette } from '~lib/styles/theme';
-import Base from '../Base';
 
-const Button = styled(Base)<{ active?: boolean }>`
+interface StyledButtonProps {
+  active?: boolean;
+}
+
+interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement>, StyledButtonProps {}
+
+const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
+  return <StyledButton {...props}>{children}</StyledButton>;
+};
+
+const StyledButton = styled.button<StyledButtonProps>`
   transition: background 0.5s;
   padding: ${space[1]} ${space[2]};
   margin: 0 ${space[0]};

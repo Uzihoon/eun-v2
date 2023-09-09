@@ -22,6 +22,7 @@ export type ThemeVariables = {
   label_txt: string;
   normal_txt: string;
   upload_desc_txt: string;
+  file_txt: string;
 
   // Point
   primary_color: string;

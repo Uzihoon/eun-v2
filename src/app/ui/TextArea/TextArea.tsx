@@ -1,15 +1,23 @@
 import { useState } from 'react';
 import _ from 'lodash';
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 import space from '~lib/styles/space';
 import { themedPalette } from '~lib/styles/theme';
 import Bar from '../Bar';
+import ErrorText from '../ErrorText';
 
-interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
+interface StyledTextAreaProps {
+  isInvalid?: boolean;
+}
+
+interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement>, StyledTextAreaProps {
+  errorMessage?: string;
+  value?: any;
+}
 
 const TEXT_LIMIT = 37;
 
-const TextArea: React.FC<TextAreaProps> = (props) => {
+const TextArea: React.FC<TextAreaProps> = ({ isInvalid, errorMessage, ...props }) => {
   const [height, setHeight] = useState(TEXT_LIMIT);
 
   const updateHeight = _.debounce((value: string) => {
@@ -23,8 +31,9 @@ const TextArea: React.FC<TextAreaProps> = (props) => {
 
   return (
     <TextAreaContainer style={{ height: `${height}px` }}>
-      <StyledTextArea {...props} onChange={handleChange} />
+      <StyledTextArea {...props} onChange={handleChange} isInvalid={isInvalid} />
       <StyledBar />
+      {isInvalid && errorMessage && <ErrorText errorMessage={errorMessage} />}
     </TextAreaContainer>
   );
 };
@@ -35,7 +44,7 @@ const TextAreaContainer = styled.div`
   min-height: 37px;
 `;
 
-const StyledTextArea = styled.textarea`
+const StyledTextArea = styled.textarea<StyledTextAreaProps>`
   height: 100%;
   border-bottom: 1px solid ${themedPalette.border_input};
   color: rgba(0, 0, 0, 0.38);
@@ -65,6 +74,12 @@ const StyledTextArea = styled.textarea`
   &:focus + div:after {
     width: 50%;
   }
+
+  ${(props) =>
+    props.isInvalid &&
+    css`
+      border-bottom: 1px solid ${themedPalette.required_txt};
+    `}
 `;
 
 const StyledBar = styled(Bar)`

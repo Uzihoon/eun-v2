@@ -24,6 +24,7 @@ const themeVariableSets: Record<Theme, ThemeVariables> = {
     label_txt: palette.grey.l600,
     normal_txt: palette.grey.l500,
     upload_desc_txt: palette.point,
+    file_txt: palette.grey.l300,
 
     primary_color: palette.point,
   },

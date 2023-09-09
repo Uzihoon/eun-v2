@@ -16,6 +16,7 @@
   "form.label.standardRange": "Standard Range",
   "form.label.targetNucleotide": "Target Nucleotide",
   "form.label.desiredNucleotide": "Desired change of target nucleotide",
+  "form.label.nucleases": "Used Cas Ortholog",
 
   "form.desc.fileName": "Sample-ID",
   "form.desc.fileIndex": "_L001_",
@@ -26,5 +27,13 @@
   "upload.title": "Drag & drop to upload",
   "upload.desc": "or browse",
 
-  "button.submit": "Submit"
+  "button.submit": "Submit",
+
+  "form.required.indexPattern": "File index pattern must not be empty",
+  "form.required.referenceSequence": "Reference amplicon sequence must not be empty",
+  "form.required.targetSequence": "Target DNA sequence must not be empty",
+  "form.required.standardRange": "Standard range must not be empty",
+  "form.required.sequencingData": "Sequencing data must not be empty",
+
+  "form.invalid.standardRange": "Standard range isn't valid. It can only include numbers"
 }

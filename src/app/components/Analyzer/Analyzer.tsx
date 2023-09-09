@@ -1,7 +1,6 @@
 import Header from '~app/components/Header';
 import { ANALYZER } from '~env/constants';
 import { t } from '~i18n';
-import Paper from '../Paper';
 import AnalyzerForm from './Analyzer.form';
 
 const Analyzer: React.FC = () => {
