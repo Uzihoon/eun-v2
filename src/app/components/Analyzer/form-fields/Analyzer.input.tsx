@@ -19,7 +19,6 @@ const AnalyzerInputFormField: React.FC<AnalyzerInputFormFieldProps> = ({ label, 
     <FormField label={t.get(label)} required={!!props.rules?.required}>
       <Input
         {...fields}
-        ref={ref}
         value={value as string}
         placeholder={placeholder && t.get(placeholder)}
         isInvalid={invalid}

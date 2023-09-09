@@ -3,7 +3,7 @@ import space from '~lib/styles/space';
 import { themedPalette } from '~lib/styles/theme';
 
 interface StyledButtonProps {
-  active?: boolean;
+  actionButton?: boolean;
 }
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement>, StyledButtonProps {}
@@ -24,7 +24,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   }
 
   ${(props) =>
-    props.active &&
+    props.actionButton &&
     css`
       font-size: 0.9em;
       padding: ${space[1]} ${space[4]};

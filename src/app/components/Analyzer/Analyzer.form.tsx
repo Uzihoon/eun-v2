@@ -8,10 +8,11 @@ import {
   FULL_SEQ,
   INDEX_PATTERN,
   NAME_PATTERN,
-  NUC_LEASES,
+  NUCLEASES,
   R_GEN_SEQ,
   TARGET_SEQ,
   CHANGE_SEQ,
+  END_RANGE,
 } from '~env/constants/form-field-name';
 import AnalyzerInputFormField from './form-fields/Analyzer.input';
 import AnalyzerTextareaFormField from './form-fields/Analyzer.textarea';
@@ -23,9 +24,12 @@ import { t } from '~i18n';
 import { isArray } from 'lodash';
 import useFormatAnalyzerFormData from '~app/hooks/useFormatAnalyzerFormData';
 import Alert from '~app/ui/Alert';
+import useRunAnalyzer from '~app/hooks/useRunAnalyzer';
 
 const AnalyzerForm: React.FC = () => {
-  const { error } = useFormatAnalyzerFormData();
+  const { error, dispatchFormat } = useFormatAnalyzerFormData();
+  const { runAnalyzer } = useRunAnalyzer();
+
   const { handleSubmit, control } = useForm<AnalyzerFormValues>({
     shouldUnregister: true,
     shouldFocusError: true,
@@ -34,9 +38,15 @@ const AnalyzerForm: React.FC = () => {
   const onSubmit = useCallback<NonNullable<FormHTMLAttributes<HTMLFormElement>['onSubmit']>>(
     (event) =>
       handleSubmit((data) => {
-        console.log(data);
+        const analyzerData = dispatchFormat(data);
+
+        if (!analyzerData || error) {
+          return;
+        }
+
+        runAnalyzer(analyzerData);
       })(event),
-    [handleSubmit],
+    [handleSubmit, dispatchFormat, runAnalyzer, error],
   );
 
   return (
@@ -44,7 +54,13 @@ const AnalyzerForm: React.FC = () => {
       noValidate
       onSubmit={onSubmit}
       error={
-        <Alert content={t.get('alert.invalid.file.content')} header={t.get('alert.invalid.file.header')} type="ERROR" />
+        error ? (
+          <Alert
+            content={t.get('alert.invalid.file.content')}
+            header={t.get('alert.invalid.file.header')}
+            type="ERROR"
+          />
+        ) : null
       }
     >
       <AnalyzerInputFormField
@@ -92,7 +108,7 @@ const AnalyzerForm: React.FC = () => {
         placeholder="form.desc.referenceSequence"
       />
       <AnalyzerInputFormField
-        name={NUC_LEASES}
+        name={R_GEN_SEQ}
         control={control}
         rules={{
           required: {
@@ -104,7 +120,7 @@ const AnalyzerForm: React.FC = () => {
         placeholder="form.desc.targetSequence"
       />
       <AnalyzerInputFormField
-        name={R_GEN_SEQ}
+        name={END_RANGE}
         control={control}
         rules={{
           required: {

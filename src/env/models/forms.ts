@@ -1,10 +1,11 @@
 import {
   CHANGE_SEQ,
+  END_RANGE,
   FILES,
   FULL_SEQ,
   INDEX_PATTERN,
   NAME_PATTERN,
-  NUC_LEASES,
+  NUCLEASES,
   R_GEN_SEQ,
   TARGET_SEQ,
 } from '~env/constants/form-field-name';
@@ -14,8 +15,9 @@ export type CrisprFormFieldsValues = {
   [INDEX_PATTERN]: string;
   [FILES]: File[];
   [FULL_SEQ]: string;
-  [NUC_LEASES]: string;
+  [NUCLEASES]: string;
   [R_GEN_SEQ]: string;
+  [END_RANGE]: string;
   [TARGET_SEQ]: string;
   [CHANGE_SEQ]: string;
 };

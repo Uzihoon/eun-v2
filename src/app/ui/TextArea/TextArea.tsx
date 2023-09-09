@@ -17,7 +17,7 @@ interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement
 
 const TEXT_LIMIT = 37;
 
-const TextArea: React.FC<TextAreaProps> = ({ isInvalid, errorMessage, ...props }) => {
+const TextArea: React.FC<TextAreaProps> = ({ isInvalid, errorMessage, onChange, ...props }) => {
   const [height, setHeight] = useState(TEXT_LIMIT);
 
   const updateHeight = _.debounce((value: string) => {
@@ -27,6 +27,7 @@ const TextArea: React.FC<TextAreaProps> = ({ isInvalid, errorMessage, ...props }
   const handleChange: React.ChangeEventHandler<HTMLTextAreaElement> = (event) => {
     event.preventDefault();
     updateHeight(event.target.value);
+    if (onChange) onChange(event);
   };
 
   return (
