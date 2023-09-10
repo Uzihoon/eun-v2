@@ -8,6 +8,7 @@ const route: Route = {
   pageId: INDEL.PAGE_ID,
   title: INDEL.TITLE_ID,
   element: IndelPage,
+  isVisible: true,
 };
 
 export default route;

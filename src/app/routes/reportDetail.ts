@@ -4,11 +4,11 @@ import { REPORT } from '~env/constants';
 import { Route } from './type';
 
 const route: Route = {
-  path: REPORT.PATH,
+  path: `${REPORT.PATH}/:${REPORT.PARAM_ID}`,
   pageId: REPORT.PAGE_ID,
   title: REPORT.TITLE_ID,
   element: ReportPage,
-  isVisible: true,
+  isVisible: false,
 };
 
 export default route;

@@ -1,4 +1,3 @@
-import { UseFormRegister } from 'react-hook-form';
 import Button from '~app/ui/Button';
 import { t } from '~i18n';
 import Paper from '../Paper';

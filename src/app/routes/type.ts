@@ -4,4 +4,5 @@ export interface Route {
   pageId: string;
   path: string;
   index?: boolean;
+  isVisible: boolean;
 }

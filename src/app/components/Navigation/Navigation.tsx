@@ -12,15 +12,17 @@ const Navigation: React.FC = () => {
     <NavContainer>
       <Logo />
       <Nav>
-        {routes.map(({ pageId, path, title }) =>
-          location.pathname === path ? (
-            <Selected key={pageId}>{t.get(title)}</Selected>
-          ) : (
-            <Link to={path} key={pageId}>
-              <Button>{t.get(title)}</Button>
-            </Link>
-          ),
-        )}
+        {routes
+          .filter((route) => route.isVisible)
+          .map(({ pageId, path, title }) =>
+            location.pathname === path ? (
+              <Selected key={pageId}>{t.get(title)}</Selected>
+            ) : (
+              <Link to={path} key={pageId}>
+                <Button>{t.get(title)}</Button>
+              </Link>
+            ),
+          )}
       </Nav>
     </NavContainer>
   );

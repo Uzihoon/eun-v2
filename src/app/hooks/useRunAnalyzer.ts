@@ -3,7 +3,6 @@ import { useSetRecoilState } from 'recoil';
 import { reportsState } from '~recoil/atom/report';
 import { Analyzer } from '~env/models/analyzer';
 import { WorkerMessage, WORKER_STATUS } from '~env/models/worker';
-import { AnalyzedData } from '~env/models/report';
 
 const useRunAnalyzer = () => {
   const [requestNum, setRequestNum] = useState(0);
@@ -11,7 +10,6 @@ const useRunAnalyzer = () => {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [status, setStatus] = useState<WORKER_STATUS>(WORKER_STATUS.IDLE);
-  const [id, setId] = useState('');
   const [error, setError] = useState('');
 
   const setReports = useSetRecoilState(reportsState);
@@ -33,20 +31,22 @@ const useRunAnalyzer = () => {
     }
 
     if (msgType === WORKER_STATUS.SUMMARY) {
+      const { analyzerId, summary } = msg;
       setReports((oldReports) => ({
         ...oldReports,
-        [id]: { summary: msg, analyzed: [] },
+        [analyzerId]: { summary, analyzed: [] },
       }));
     }
 
     if (msgType === WORKER_STATUS.COMPLETE) {
+      const { analyzerId } = msg;
       setReports((oldReports) => {
-        const analyzedData = oldReports[id]?.analyzed || [];
+        const analyzedData = oldReports[analyzerId]?.analyzed || [];
 
         return {
           ...oldReports,
-          [id]: {
-            ...oldReports[id],
+          [analyzerId]: {
+            ...oldReports[analyzerId],
             analyzed: [...analyzedData, msg],
           },
         };
@@ -62,7 +62,7 @@ const useRunAnalyzer = () => {
   }, [requestNum, completeNum]);
 
   const runAnalyzer = (analyzerData: Analyzer) => {
-    const { fileList, analyzerId, ...data } = analyzerData;
+    const { fileList, ...data } = analyzerData;
     let workerCount = 0;
 
     for (const key in fileList) {
@@ -83,7 +83,6 @@ const useRunAnalyzer = () => {
     setProgress(0);
     setRequestNum(workerCount);
     setCompletNum(0);
-    setId(analyzerId);
     setStatus(WORKER_STATUS.LOADING);
   };
 

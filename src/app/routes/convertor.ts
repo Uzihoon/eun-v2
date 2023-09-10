@@ -8,6 +8,7 @@ const route: Route = {
   pageId: CONVERTOR.PAGE_ID,
   title: CONVERTOR.TITLE_ID,
   element: ConvertorPage,
+  isVisible: true,
 };
 
 export default route;

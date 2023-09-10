@@ -9,6 +9,7 @@ const route: Route = {
   title: ANALYZER.TITLE_ID,
   element: AnalyzerPage,
   index: true,
+  isVisible: true,
 };
 
 export default route;

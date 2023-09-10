@@ -45,6 +45,11 @@ export interface ReportTable {
   type: number;
 }
 
+export interface Report {
+  analyzed: AnalyzedData[];
+  summary: Summary[];
+}
+
 export interface Reports {
-  [K: string]: { analyzed: AnalyzedData[]; summary: Summary[] };
+  [K: string]: Report;
 }
