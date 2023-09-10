@@ -15,7 +15,7 @@
   "form.label.targetSequence": "Target DNA sequence (5' to 3', without PAM sequence)",
   "form.label.standardRange": "Standard Range",
   "form.label.targetNucleotide": "Target Nucleotide",
-  "form.label.desiredNucleotide": "Desired change of target nucleotide",
+  "form.label.desiredNucleotide": "Desired Change of Target Nucleotide",
   "form.label.nucleases": "Used Cas Ortholog",
 
   "form.desc.fileName": "Sample-ID",
@@ -45,5 +45,37 @@
 
   "progress.analyzing.title": "Analyzing...",
   "progress.analyzing.description": "Please do not close the browser and wait a moment until the analysis is complete.",
-  "progress.analyzing.info": "{progress} of {total}"
+  "progress.analyzing.info": "{progress} of {total}",
+
+  "report.summary.title": "Reference Amplicon Sequence",
+  "report.result.title": "Summary",
+  "report.table.title": "Sequence Information",
+  "report.graph.title": "Sequence graph",
+  "report.change.title": "Result",
+
+  "report.summary.color.primerSeq": "Comparision sequence",
+  "report.summary.color.rgenSeq": "crRNA sequence",
+  "report.summary.color.coreSeq": "Core sequence",
+  "report.sequence.color.target": "Desired Change",
+  "report.sequence.color.sub": "Undesired Change",
+  "report.sequence.color.insertion": "Insertion",
+  "report.sequence.color.deletion": "Deletion",
+  "report.sequence.color.original": "Original",
+
+  "report.table.header.id": "ID",
+  "report.table.header.sequence": "Sequence",
+  "report.table.header.length": "Length",
+  "report.table.header.count": "Count",
+  "report.table.header.type": "Type",
+  "report.table.header.hdr": "HDR",
+
+  "report.title.summary": "Summary",
+
+  "report.title.result.totalSeq": "Total Sequences",
+  "report.title.result.indicatorSeq": "With both indicator sequences",
+  "report.title.result.frequency": "More than minimum frequency",
+  "report.title.result.insertions": "Insertions",
+  "report.title.result.deletions": "Deletions",
+
+  "report.label.result": "Changed rate"
 }

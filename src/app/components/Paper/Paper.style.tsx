@@ -15,7 +15,7 @@ export const PaperContainer = styled.div`
   position: relative;
   border-radius: 20px;
   border: 0px transparent;
-  padding: ${space[7]} ${space[6]} ${space[3]} ${space[6]};
+  padding: ${space[6]} ${space[6]} ${space[3]} ${space[6]};
   opacity: 0;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.09);
   animation: ${animation.popInFromBottom} 0.8s forwards ease-in-out;

@@ -20,12 +20,14 @@ const fadeOut = keyframes`
 
 const popInFromBottom = keyframes`
   0% {
+    position: relative;
     opacity: 0;
-    transform: translateY(30px);
+    bottom: -30px;
   }
   100% {
+    position: relative;
     opacity: 1;
-    transform: translateY(0px);
+    bottom: 0;
   }
 `;
 

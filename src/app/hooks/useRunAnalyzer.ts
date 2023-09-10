@@ -42,7 +42,6 @@ const useRunAnalyzer = () => {
       const { analyzerId } = msg;
       setReports((oldReports) => {
         const analyzedData = oldReports[analyzerId]?.analyzed || [];
-
         return {
           ...oldReports,
           [analyzerId]: {

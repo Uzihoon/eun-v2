@@ -6,6 +6,10 @@ const GlobalStyle = createGlobalStyle`
     ${themes.light}
     font-family: 'Open Sans', sans-serif !important;
     font-size: 14px;
+
+    * {
+      font-family: 'Open Sans', sans-serif !important;
+    }
   }
 `;
 

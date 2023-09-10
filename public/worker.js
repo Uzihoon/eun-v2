@@ -1242,6 +1242,8 @@ self.onmessage = (e) => {
     data.seq_target = seq_RGEN;
     data.seq_type = nucleases;
     data.analyzerId = analyzerId;
+    data.targetSeq = targetSeq;
+    data.changeSeq = changeSeq;
     pgcallback(100);
     return data;
   };

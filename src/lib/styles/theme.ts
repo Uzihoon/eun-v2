@@ -13,12 +13,14 @@ const themeVariableSets: Record<Theme, ThemeVariables> = {
     bg_upload: palette.grey.l10,
     bg_hover_upload: palette.grey.l50,
     bg_error_alert: palette.red.l50,
+    bg_table_header: palette.grey.l50,
 
     border_nav: palette.grey.l200,
     border_input: palette.grey.l200,
     border_upload: palette.grey.l100,
     border_radio: palette.grey.l100,
     border_error_alert: palette.red.l100,
+    border_report_title: palette.grey.l100,
 
     header_txt: palette.white,
     desc_txt: palette.grey.l50,
@@ -28,6 +30,7 @@ const themeVariableSets: Record<Theme, ThemeVariables> = {
     upload_desc_txt: palette.point,
     file_txt: palette.grey.l300,
     alert_txt: palette.grey.l600,
+    report_title_txt: palette.grey.l700,
 
     primary_color: palette.point,
   },

@@ -4,6 +4,8 @@ import { useRecoilState } from 'recoil';
 import { Report } from '~env/models/report';
 import { reportsState } from '~recoil/atom/report';
 import Paper from '../Paper';
+import ReportAnalyzer from './statistic-fields/Report.analyzer';
+import ReportSummary from './statistic-fields/Report.summary';
 
 interface ReportStatisticProps {
   reportId: string;
@@ -20,11 +22,21 @@ const ReportStatistic: React.FC<ReportStatisticProps> = ({ reportId }) => {
       navigate('/');
       return;
     }
-
     setReport(reports[reportId]);
   }, [reportId, reports, navigate]);
 
-  return <Paper>{reportId}</Paper>;
+  if (!report) {
+    return null;
+  }
+
+  return (
+    <Paper>
+      <ReportSummary summary={report?.summary || []} />
+      {report.analyzed.map((analyze) => (
+        <ReportAnalyzer key={analyze.fileId} data={analyze} />
+      ))}
+    </Paper>
+  );
 };
 
 export default ReportStatistic;

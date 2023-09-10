@@ -4,15 +4,15 @@ import { t } from '~i18n';
 import Header from '../Header';
 import ReportForm from './Report.form';
 import ReportStatistic from './Report.statistic';
+import { ReportContainer } from './Report.style';
 
 const Report: React.FC = () => {
   const { reportId } = useParams();
-  console.log(reportId);
   return (
-    <div>
+    <ReportContainer>
       <Header title={t.get(REPORT.TITLE_ID)} />
       {reportId ? <ReportStatistic reportId={reportId} /> : <ReportForm />}
-    </div>
+    </ReportContainer>
   );
 };
 

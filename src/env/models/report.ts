@@ -19,11 +19,17 @@ export interface AnalyzedData {
   table: ReportTable[];
   tot_count: number;
   totlr_count: number;
+  targetSeq: string;
+  changeSeq: string;
 }
+
+export type SummaryType = 'primerSeq' | 'rgenSeq' | 'coreSeq' | 'normal';
+
+export type SequenceType = 'desired' | 'undesired' | 'insertion' | 'deletion' | 'normal' | 'original';
 
 export interface Summary {
   data: string;
-  type: string;
+  type: SummaryType;
 }
 
 export interface Nucleotide {
@@ -52,4 +58,11 @@ export interface Report {
 
 export interface Reports {
   [K: string]: Report;
+}
+
+export interface ReportColor {
+  title: string;
+  id: SummaryType | SequenceType;
+  color: string;
+  type?: 'table' | 'graph' | 'all';
 }
