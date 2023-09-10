@@ -16,3 +16,8 @@ export interface Analyzer {
   changeSeq: string;
   analyzerId: string;
 }
+
+export interface Summary {
+  data: string;
+  type: string;
+}

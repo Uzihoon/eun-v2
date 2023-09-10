@@ -39,5 +39,10 @@
   "form.invalid.sequencingData": "The number of files must be even. Please check the file again",
 
   "alert.invalid.file.header": "We found invalid files",
-  "alert.invalid.file.content": "Some files have invalid pattern. Please check the file pattern and file name again"
+  "alert.invalid.file.content": "Some files have invalid pattern. Please check the file pattern and file name again",
+  "alert.invalid.file.title": "Invalid file list",
+
+  "progress.analyzing.title": "Analyzing...",
+  "progress.analyzing.description": "Please do not close the browser and wait a moment until the analysis is complete.",
+  "progress.analyzing.info": "{progress} of {total}"
 }

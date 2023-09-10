@@ -22,10 +22,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
  */
-importScripts("./pako.js");
+importScripts('./pako.js');
 
 const post = (msgType, msg) => postMessage({ msgType, msg });
-const pgcallback = p => post(2, p);
+const pgcallback = (p) => post(2, p);
 
 function needle(a, b, gapopen, gapextend, endgapopen, endgapextend) {
   function E_FPEQ(a, b, e) {
@@ -48,7 +48,7 @@ function needle(a, b, gapopen, gapextend, endgapopen, endgapextend) {
     [-1, -1, -4, -1, -3, -1, -3, -1, -3, -1, -2, -2, -1, -2, -1, -1],
     [-1, -1, -1, -4, -3, -1, -1, -3, -1, -3, -2, -2, -2, -1, -1, -1],
     [-2, -2, -2, -2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -2],
-    [-4, 5, -4, -4, -4, 1, -4, 1, 1, -4, -1, -4, -1, -1, -2, 5]
+    [-4, 5, -4, -4, -4, 1, -4, 1, 1, -4, -1, -4, -1, -1, -2, 5],
   ]; // EDNAFULL
   const base_to_idx = {
     A: 0,
@@ -66,25 +66,25 @@ function needle(a, b, gapopen, gapextend, endgapopen, endgapextend) {
     T: 1,
     W: 5,
     V: 11,
-    Y: 7
+    Y: 7,
   }; // for EDNAFULL
   var idx_to_base = {
-    0: "A",
-    1: "T",
-    2: "G",
-    3: "C",
-    4: "S",
-    5: "W",
-    6: "R",
-    7: "Y",
-    8: "K",
-    9: "M",
-    10: "B",
-    11: "V",
-    12: "H",
-    13: "D",
-    14: "N",
-    15: "U"
+    0: 'A',
+    1: 'T',
+    2: 'G',
+    3: 'C',
+    4: 'S',
+    5: 'W',
+    6: 'R',
+    7: 'Y',
+    8: 'K',
+    9: 'M',
+    10: 'B',
+    11: 'V',
+    12: 'H',
+    13: 'D',
+    14: 'N',
+    15: 'U',
   }; // for EDNAFULL
 
   var ix = [],
@@ -227,21 +227,13 @@ function needle(a, b, gapopen, gapextend, endgapopen, endgapextend) {
 
     if (
       cursorp == 1 &&
-      E_FPEQ(
-        ypos == 0 || ypos == lena - 1 ? endgapextend : gapextend,
-        ix[cursor] - ix[cursor + 1],
-        eps
-      )
+      E_FPEQ(ypos == 0 || ypos == lena - 1 ? endgapextend : gapextend, ix[cursor] - ix[cursor + 1], eps)
     ) {
       compass[cursor] = 1;
       xpos--;
     } else if (
       cursorp == 2 &&
-      E_FPEQ(
-        xpos == 0 || xpos == lenb - 1 ? endgapextend : gapextend,
-        iy[cursor] - iy[cursor + lenb],
-        eps
-      )
+      E_FPEQ(xpos == 0 || xpos == lenb - 1 ? endgapextend : gapextend, iy[cursor] - iy[cursor + lenb], eps)
     ) {
       compass[cursor] = 2;
       ypos--;
@@ -264,7 +256,7 @@ function needle(a, b, gapopen, gapextend, endgapopen, endgapextend) {
       compass[cursor] = 2;
       ypos--;
     } else {
-      alert("Needle: Something is seriously wrong in the traceback algorithm");
+      alert('Needle: Something is seriously wrong in the traceback algorithm');
       return -1;
     }
     cursorp = compass[cursor];
@@ -272,13 +264,13 @@ function needle(a, b, gapopen, gapextend, endgapopen, endgapextend) {
 
   for (i = lenb - 1; i > start2; ) {
     aln_b.push(idx_to_base[q[i--]]);
-    aln_a.push("-");
-    aln_r.push(" ");
+    aln_a.push('-');
+    aln_r.push(' ');
   }
   for (j = lena - 1; j > start1; ) {
     aln_a.push(idx_to_base[p[j--]]);
-    aln_b.push("-");
-    aln_r.push(" ");
+    aln_b.push('-');
+    aln_r.push(' ');
   }
 
   while (start2 >= 0 && start1 >= 0) {
@@ -289,42 +281,42 @@ function needle(a, b, gapopen, gapextend, endgapopen, endgapextend) {
       b2 = q[start2--];
       aln_a.push(idx_to_base[b1]);
       aln_b.push(idx_to_base[b2]);
-      if (b1 == b2) aln_r.push("|");
-      else aln_r.push(".");
+      if (b1 == b2) aln_r.push('|');
+      else aln_r.push('.');
       continue;
     } else if (compass[cursor] == 1) {
       /* Left, gap(s) in vertical */
-      aln_a.push("-");
+      aln_a.push('-');
       aln_b.push(idx_to_base[q[start2--]]);
-      aln_r.push(" ");
+      aln_r.push(' ');
       continue;
     } else if (compass[cursor] == 2) {
       /* Down, gap(s) in horizontal */
       aln_a.push(idx_to_base[p[start1--]]);
-      aln_b.push("-");
-      aln_r.push(" ");
+      aln_b.push('-');
+      aln_r.push(' ');
       continue;
     } else {
-      alert("Needle: Walk Error in NW");
+      alert('Needle: Walk Error in NW');
       return -1;
     }
   }
 
   for (; start2 >= 0; start2--) {
     aln_b.push(idx_to_base[q[start2]]);
-    aln_a.push("-");
-    aln_r.push(" ");
+    aln_a.push('-');
+    aln_r.push(' ');
   }
 
   for (; start1 >= 0; start1--) {
     aln_a.push(idx_to_base[p[start1]]);
-    aln_b.push("-");
-    aln_r.push(" ");
+    aln_b.push('-');
+    aln_r.push(' ');
   }
 
-  aln_a = aln_a.reverse().join("");
-  aln_b = aln_b.reverse().join("");
-  aln_r = aln_r.reverse().join(""); //.replace(/ /gi, "&nbsp;");
+  aln_a = aln_a.reverse().join('');
+  aln_b = aln_b.reverse().join('');
+  aln_r = aln_r.reverse().join(''); //.replace(/ /gi, "&nbsp;");
 
   return [aln_a, aln_r, aln_b];
 }
@@ -332,27 +324,27 @@ function needle(a, b, gapopen, gapextend, endgapopen, endgapextend) {
 const helper = {
   revcompstr(s) {
     let i, l, _i, _ref;
-    l = s.split("").reverse();
+    l = s.split('').reverse();
     for (i = _i = 0, _ref = l.length; _i < _ref; i = _i += 1) {
-      if (l[i] === "A") {
-        l[i] = "T";
-      } else if (l[i] === "T") {
-        l[i] = "A";
-      } else if (l[i] === "G") {
-        l[i] = "C";
-      } else if (l[i] === "C") {
-        l[i] = "G";
-      } else if (l[i] === "a") {
-        l[i] = "t";
-      } else if (l[i] === "t") {
-        l[i] = "a";
-      } else if (l[i] === "g") {
-        l[i] = "c";
-      } else if (l[i] === "c") {
-        l[i] = "g";
+      if (l[i] === 'A') {
+        l[i] = 'T';
+      } else if (l[i] === 'T') {
+        l[i] = 'A';
+      } else if (l[i] === 'G') {
+        l[i] = 'C';
+      } else if (l[i] === 'C') {
+        l[i] = 'G';
+      } else if (l[i] === 'a') {
+        l[i] = 't';
+      } else if (l[i] === 't') {
+        l[i] = 'a';
+      } else if (l[i] === 'g') {
+        l[i] = 'c';
+      } else if (l[i] === 'c') {
+        l[i] = 'g';
       }
     }
-    return l.join("");
+    return l.join('');
   },
   min(a, b) {
     return +a < +b ? a : b;
@@ -368,22 +360,22 @@ const helper = {
   comp(l) {
     var i, _i, _ref;
     for (i = _i = 0, _ref = l.length; _i < _ref; i = _i += 1) {
-      if (l[i] === "A") {
-        l[i] = "T";
-      } else if (l[i] === "T") {
-        l[i] = "A";
-      } else if (l[i] === "G") {
-        l[i] = "C";
-      } else if (l[i] === "C") {
-        l[i] = "G";
-      } else if (l[i] === "a") {
-        l[i] = "t";
-      } else if (l[i] === "t") {
-        l[i] = "a";
-      } else if (l[i] === "g") {
-        l[i] = "c";
-      } else if (l[i] === "c") {
-        l[i] = "g";
+      if (l[i] === 'A') {
+        l[i] = 'T';
+      } else if (l[i] === 'T') {
+        l[i] = 'A';
+      } else if (l[i] === 'G') {
+        l[i] = 'C';
+      } else if (l[i] === 'C') {
+        l[i] = 'G';
+      } else if (l[i] === 'a') {
+        l[i] = 't';
+      } else if (l[i] === 't') {
+        l[i] = 'a';
+      } else if (l[i] === 'g') {
+        l[i] = 'c';
+      } else if (l[i] === 'c') {
+        l[i] = 'g';
       }
     }
     return l;
@@ -411,10 +403,10 @@ const helper = {
       return -1;
     }
     return 0;
-  }
+  },
 };
 
-self.onmessage = e => {
+self.onmessage = (e) => {
   if (!e) return;
   const data = e.data;
   const store = {
@@ -422,7 +414,7 @@ self.onmessage = e => {
     seq_count: {},
     chartIndex: [],
     changed: 0,
-    change_target: {}
+    change_target: {},
   };
 
   const lenStore = {};
@@ -441,13 +433,12 @@ self.onmessage = e => {
     targetSeq,
     changeSeq,
     fileId,
-    nucleases
+    nucleases,
+    analyzerId,
   } = data;
   let bp, m;
   if (rgen_type < 2) {
-    const pattern = new RegExp(
-      `(${seq_RGEN}|(${helper.revcompstr(seq_RGEN)}))`
-    );
+    const pattern = new RegExp(`(${seq_RGEN}|(${helper.revcompstr(seq_RGEN)}))`);
     m = pattern.exec(seq_wt);
     if (m) {
       if (rgen_type === 0) {
@@ -456,10 +447,7 @@ self.onmessage = e => {
         bp = m[1] ? m.index + 21 : m.index + seq_RGEN.length - 16;
       }
     } else {
-      post(
-        1,
-        "Could't find the target DNA (or sgRNA) sequences in the full reference sequences."
-      );
+      post(1, "Could't find the target DNA (or sgRNA) sequences in the full reference sequences.");
       return;
     }
   } else {
@@ -475,7 +463,7 @@ self.onmessage = e => {
     const m_2 = pattern_2.exec(seq_wt);
     if (m_1 && m_2) {
       if (m_1.index > m_2.index) {
-        post(1, "Position of left site is bigger than that of right site!");
+        post(1, 'Position of left site is bigger than that of right site!');
         return;
       }
 
@@ -487,9 +475,7 @@ self.onmessage = e => {
         bp = Math.round((bp_1 + bp_2) / 2);
       } else {
         const bp_1 = m_1[1] ? m_1.index + 21 : m_1.index + seq_RGEN.length - 16;
-        const bp_2 = m_2[1]
-          ? m_2.index + 21
-          : m_2.index + seq_RGEN2.length - 16;
+        const bp_2 = m_2[1] ? m_2.index + 21 : m_2.index + seq_RGEN2.length - 16;
         bp = Math.round((bp_1 + bp_2) / 2);
       }
     } else {
@@ -512,12 +498,8 @@ self.onmessage = e => {
   const pri_for_patterns = [];
   const pri_back_patterns = [];
   for (let i = 0; i < pri_len; i++) {
-    pri_for_patterns.push(
-      pri_for.slice(0, i) + "[AGCT]" + pri_for.slice(i + 1)
-    );
-    pri_back_patterns.push(
-      pri_back.slice(0, i) + "[AGCT]" + pri_back.slice(i + 1)
-    );
+    pri_for_patterns.push(pri_for.slice(0, i) + '[AGCT]' + pri_for.slice(i + 1));
+    pri_back_patterns.push(pri_back.slice(0, i) + '[AGCT]' + pri_back.slice(i + 1));
   }
 
   // original seq francy
@@ -527,70 +509,64 @@ self.onmessage = e => {
   const setSeq = () => {
     eun_seq_fancy_wt.push({
       data: seq_wt.slice(0, start_pos),
-      type: "normal"
+      type: 'normal',
     });
 
     eun_seq_fancy_wt.push({
       data: seq_wt.slice(start_pos, m.index),
-      type: "primerSeq"
+      type: 'primerSeq',
     });
 
     eun_seq_fancy_wt.push({
       data: seq_wt.slice(m.index, m.index + seq_RGEN.length),
-      type: "rgenSeq"
+      type: 'rgenSeq',
     });
 
     eun_seq_fancy_wt.push({
       data: seq_wt.slice(m.index + seq_RGEN.length, end_pos),
-      type: "primerSeq"
+      type: 'primerSeq',
     });
 
     eun_seq_fancy_wt.push({
       data: seq_wt.slice(end_pos),
-      type: "normal"
+      type: 'normal',
     });
 
     seq_fancy_wt.push({
       data: seq_wt.slice(0, start_pos),
-      type: "normal"
+      type: 'normal',
     });
     seq_fancy_wt.push({
-      data: seq_wt.slice(
-        start_pos,
-        helper.min(start_pos + pri_len, bp - filt_r)
-      ),
-      type: "primerSeq"
+      data: seq_wt.slice(start_pos, helper.min(start_pos + pri_len, bp - filt_r)),
+      type: 'primerSeq',
     });
     seq_fancy_wt.push({
       data: seq_wt.slice(start_pos + pri_len, helper.min(m.index, bp - filt_r)),
-      type: "normal"
+      type: 'normal',
     });
     seq_fancy_wt.push({
       data: seq_wt.slice(m.index, bp - filt_r),
-      type: "rgenSeq"
+      type: 'rgenSeq',
     });
     seq_fancy_wt.push({
       data: seq_wt.slice(bp - filt_r, bp + filt_r),
-      type: "coreSeq"
+      type: 'coreSeq',
     });
     seq_fancy_wt.push({
       data: seq_wt.slice(bp + filt_r, m.index + seq_RGEN.length),
-      type: "rgenSeq"
+      type: 'rgenSeq',
     });
     seq_fancy_wt.push({
-      data: seq_wt.slice(
-        helper.max(m.index + seq_RGEN.length, bp + filt_r),
-        end_pos - pri_len
-      ),
-      type: "normal"
+      data: seq_wt.slice(helper.max(m.index + seq_RGEN.length, bp + filt_r), end_pos - pri_len),
+      type: 'normal',
     });
     seq_fancy_wt.push({
       data: seq_wt.slice(helper.max(end_pos - pri_len, bp + filt_r), end_pos),
-      type: "primerSeq"
+      type: 'primerSeq',
     });
     seq_fancy_wt.push({
       data: seq_wt.slice(end_pos),
-      type: "normal"
+      type: 'normal',
     });
     // RGEN TOOL
     // post(0, seq_fancy_wt);
@@ -601,9 +577,9 @@ self.onmessage = e => {
 
   setSeq();
 
-  const _line = (function() {
+  const _line = (function () {
     function _line() {
-      this.s = "";
+      this.s = '';
       this.n = 0;
     }
     return _line;
@@ -611,7 +587,7 @@ self.onmessage = e => {
 
   // 변경된 sequence 찾음
 
-  const findChangeSeq = list => {
+  const findChangeSeq = (list) => {
     const lenVal = Object.values(lenStore);
     const lenKey = Object.keys(lenStore);
     const maxIndex = lenVal.indexOf(Math.max(...lenVal));
@@ -626,17 +602,10 @@ self.onmessage = e => {
       let changed = 0;
       const reg = new RegExp(seq_RGEN);
       const originTarget = origin.match(reg);
-      if (
-        !originTarget ||
-        origin.length !== ORIGIN_LEN ||
-        change.length !== ORIGIN_LEN
-      ) {
+      if (!originTarget || origin.length !== ORIGIN_LEN || change.length !== ORIGIN_LEN) {
         continue;
       }
-      const changeTarget = change.slice(
-        originTarget.index,
-        originTarget.index + seq_RGEN.length
-      );
+      const changeTarget = change.slice(originTarget.index, originTarget.index + seq_RGEN.length);
 
       // store.change_target[list[i].id] = changeTarget;
 
@@ -650,7 +619,7 @@ self.onmessage = e => {
         }
         if (!store.chartIndex[i]) {
           store.chartIndex[i] = {
-            [b]: 1 * count
+            [b]: 1 * count,
           };
         } else if (!store.chartIndex[i][b]) {
           store.chartIndex[i][b] = 1 * count;
@@ -664,7 +633,7 @@ self.onmessage = e => {
     }
   };
 
-  const process_chunk = seqs => {
+  const process_chunk = (seqs) => {
     let cut_seq;
     let flag_for;
     let flag_back;
@@ -703,10 +672,7 @@ self.onmessage = e => {
         if (cut_seq.length === 0) {
           err_cycle = 1;
           if (err_v === 0) {
-            post(
-              11,
-              "Indicator sequences are found in wrong position. Please try another R value for this sample."
-            );
+            post(11, 'Indicator sequences are found in wrong position. Please try another R value for this sample.');
             err_v = 1;
           }
         }
@@ -720,7 +686,7 @@ self.onmessage = e => {
     }
   };
 
-  const _fq = (function() {
+  const _fq = (function () {
     function _fq() {
       this.id = new _line();
       this.seq = new _line();
@@ -730,26 +696,26 @@ self.onmessage = e => {
     return _fq;
   })();
 
-  const _inflater = (function() {
+  const _inflater = (function () {
     function _inflater() {
       var enable_windows_gzip, that, window_bits;
       window_bits = 15;
       enable_windows_gzip = 32;
       this.inflater_pako = new pako.Inflate({
-        to: "string",
+        to: 'string',
         chunkSize: 16384,
-        windowBits: window_bits | enable_windows_gzip
+        windowBits: window_bits | enable_windows_gzip,
       });
-      this.inflating_buffer = "";
+      this.inflating_buffer = '';
       that = this;
-      this.inflater_pako.onData = function(chunk) {
+      this.inflater_pako.onData = function (chunk) {
         that.inflating_buffer += chunk;
       };
       return;
     }
 
-    _inflater.prototype.decompress = function(chunk, islastchunk) {
-      this.inflating_buffer = "";
+    _inflater.prototype.decompress = function (chunk, islastchunk) {
+      this.inflating_buffer = '';
       this.inflater_pako.push(chunk, islastchunk);
       this.ended = this.inflater_pako.ended;
       this.strm = this.inflater_pako.strm;
@@ -759,11 +725,11 @@ self.onmessage = e => {
     return _inflater;
   })();
 
-  const jbfilereadersync = (function() {
+  const jbfilereadersync = (function () {
     function jbfilereadersync(file, gzipped) {
       this.file = file;
       this.gzipped = gzipped;
-      this.buffer = "";
+      this.buffer = '';
       this.filesize = this.file.size;
       this.chunksize = 1024 * 512;
       this.reader = new FileReaderSync();
@@ -777,7 +743,7 @@ self.onmessage = e => {
       return;
     }
 
-    jbfilereadersync.prototype._getchunk = function() {
+    jbfilereadersync.prototype._getchunk = function () {
       var blob, raw_array, rel_pos, remaining_bytes, s;
       if (this.fpos + this.chunksize >= this.filesize) {
         this.endpos = this.filesize;
@@ -791,22 +757,17 @@ self.onmessage = e => {
         raw_array = new Uint8Array(this.reader.readAsArrayBuffer(blob));
         s = this.inflater.decompress(raw_array, this.islastchunk);
         if (s) {
-          if (
-            this.inflater.ended &&
-            (this.inflater.strm.avail_in || !this.islastchunk)
-          ) {
+          if (this.inflater.ended && (this.inflater.strm.avail_in || !this.islastchunk)) {
             remaining_bytes = this.inflater.strm.avail_in;
             rel_pos = 0;
-            while (
-              raw_array[raw_array.byteLength - remaining_bytes + rel_pos] === 0
-            ) {
+            while (raw_array[raw_array.byteLength - remaining_bytes + rel_pos] === 0) {
               rel_pos++;
             }
             this.fpos -= remaining_bytes - rel_pos;
             this.inflater = new _inflater();
           }
         } else {
-          throw new Error("Something wrong with the gzipped file!");
+          throw new Error('Something wrong with the gzipped file!');
         }
       } else {
         s = this.reader.readAsText(blob);
@@ -814,24 +775,24 @@ self.onmessage = e => {
       return s;
     };
 
-    jbfilereadersync.prototype.readline = function() {
+    jbfilereadersync.prototype.readline = function () {
       var lfpos, result;
       if (this.eof) {
-        return "";
+        return '';
       }
-      lfpos = this.buffer.indexOf("\n");
+      lfpos = this.buffer.indexOf('\n');
       while (lfpos === -1) {
         if (this.fpos >= this.filesize) {
           result = this.buffer;
-          this.buffer = "";
+          this.buffer = '';
           this.fpos = this.filesize;
           this.eof = true;
           return result;
         }
         this.buffer += this._getchunk();
-        lfpos = this.buffer.indexOf("\n");
+        lfpos = this.buffer.indexOf('\n');
       }
-      if (this.buffer[lfpos - 1] === "\r") {
+      if (this.buffer[lfpos - 1] === '\r') {
         result = this.buffer.slice(0, lfpos - 1);
       } else {
         result = this.buffer.slice(0, lfpos);
@@ -843,11 +804,11 @@ self.onmessage = e => {
     return jbfilereadersync;
   })();
 
-  const jbfilereader = (function() {
+  const jbfilereader = (function () {
     function jbfilereader(file, gzipped) {
       this.file = file;
       this.gzipped = gzipped;
-      this.buffer = "";
+      this.buffer = '';
       this.filesize = this.file.size;
       this.chunksize = 1024 * 512;
       this.reader = new FileReader();
@@ -861,14 +822,14 @@ self.onmessage = e => {
       return;
     }
 
-    jbfilereader.prototype._readblob = function(blob) {
+    jbfilereader.prototype._readblob = function (blob) {
       var readpromise, that;
       that = this;
-      readpromise = new Promise(function(resolve, reject) {
-        that.reader.onload = function(e) {
+      readpromise = new Promise(function (resolve, reject) {
+        that.reader.onload = function (e) {
           return resolve(e.target.result);
         };
-        that.reader.onerror = function() {
+        that.reader.onerror = function () {
           return reject();
         };
       });
@@ -880,7 +841,7 @@ self.onmessage = e => {
       return readpromise;
     };
 
-    jbfilereader.prototype._getchunk = function() {
+    jbfilereader.prototype._getchunk = function () {
       var blob, chunkpromise, that;
       if (this.fpos + this.chunksize >= this.filesize) {
         this.endpos = this.filesize;
@@ -890,70 +851,63 @@ self.onmessage = e => {
       }
       blob = this.file.slice(this.fpos, this.endpos);
       that = this;
-      chunkpromise = new Promise(function(resolve, reject) {
+      chunkpromise = new Promise(function (resolve, reject) {
         var readpromise;
         readpromise = that._readblob(blob);
         return readpromise
-          .then(function(s) {
+          .then(function (s) {
             var raw_array, rel_pos, remaining_bytes;
             that.fpos += that.endpos - that.fpos;
             if (that.gzipped) {
               raw_array = new Uint8Array(s);
               s = that.inflater.decompress(raw_array, that.islastchunk);
               if (s) {
-                if (
-                  that.inflater.ended &&
-                  (that.inflater.strm.avail_in || !that.islastchunk)
-                ) {
+                if (that.inflater.ended && (that.inflater.strm.avail_in || !that.islastchunk)) {
                   remaining_bytes = that.inflater.strm.avail_in;
                   rel_pos = 0;
-                  while (
-                    raw_array[
-                      raw_array.byteLength - remaining_bytes + rel_pos
-                    ] === 0
-                  ) {
+                  while (raw_array[raw_array.byteLength - remaining_bytes + rel_pos] === 0) {
                     rel_pos++;
                   }
                   that.fpos -= remaining_bytes - rel_pos;
                   that.inflater = new _inflater();
                 }
               } else {
-                alert("Something wrong with the gzipped file!");
+                alert('Something wrong with the gzipped file!');
                 reject();
               }
             }
             that.buffer += s;
             resolve();
           })
-          ["catch"](function(s) {
-            alert("Something wrong while reading file!");
+          ['catch'](function (s) {
+            alert('Something wrong while reading file!');
             reject();
           });
       });
       return chunkpromise;
     };
 
-    jbfilereader.prototype.readline = function(callback) {
+    jbfilereader.prototype.readline = function (callback) {
       var datapromise, lfpos, result, that;
       if (this.eof) {
-        callback("");
+        callback('');
       }
-      lfpos = this.buffer.indexOf("\n");
+      lfpos = this.buffer.indexOf('\n');
       if (lfpos === -1) {
         if (this.fpos >= this.filesize) {
           result = this.buffer;
-          this.buffer = "";
+          this.buffer = '';
           this.eof = true;
           callback(result);
         } else {
           that = this;
           datapromise = this._getchunk();
-          datapromise.then(function() {
+          datapromise.then(function () {
             return that.readline(callback);
           });
         }
       } else {
-        if (this.buffer[lfpos] === "\r") {
+        if (this.buffer[lfpos] === '\r') {
           result = this.buffer.slice(0, lfpos - 1);
         } else {
           result = this.buffer.slice(0, lfpos);
@@ -966,14 +920,7 @@ self.onmessage = e => {
     return jbfilereader;
   })();
 
-  const run_fastq_join = (
-    files,
-    pgcallback,
-    chunkcallback,
-    joinsonly = false,
-    mino = 6,
-    pctdiff = 8
-  ) => {
+  const run_fastq_join = (files, pgcallback, chunkcallback, joinsonly = false, mino = 6, pctdiff = 8) => {
     let hasex;
     let olen;
     let rtn;
@@ -994,9 +941,9 @@ self.onmessage = e => {
     const steprec = 500;
     const readers = [0, 0];
     for (let i = 0; i < files.length; i++) {
-      const entries = files[i].name.split(".");
+      const entries = files[i].name.split('.');
       let gzipped = 0;
-      if (entries[entries.length - 1] === "gz") {
+      if (entries[entries.length - 1] === 'gz') {
         gzipped = 1;
       }
       readers[i] = new jbfilereadersync(files[i], gzipped);
@@ -1009,7 +956,7 @@ self.onmessage = e => {
           let line;
           try {
             line = readers[j].readline();
-            if (line === "") {
+            if (line === '') {
               eofs[j] = true;
               break;
             }
@@ -1019,28 +966,25 @@ self.onmessage = e => {
           }
 
           if (k === 0) {
-            fq[j].id.s = line.split("");
+            fq[j].id.s = line.split('');
             fq[j].id.n = fq[j].id.s.length;
           } else if (k === 1) {
-            fq[j].seq.s = line.split("");
+            fq[j].seq.s = line.split('');
             fq[j].seq.n = fq[j].seq.s.length;
           } else if (k === 2) {
-            fq[j].com.s = line.split("");
+            fq[j].com.s = line.split('');
             fq[j].com.n = fq[j].com.s.length;
           } else if (k === 3) {
-            fq[j].qual.s = line.split("");
+            fq[j].qual.s = line.split('');
             fq[j].qual.n = fq[j].qual.s.length;
           }
         }
-        if (fq[j].id.n === 0 || (fq[j].id.n !== 0 && fq[j].id.s[0] !== "@")) {
-          post(1, "Input files is not FASTQ!");
+        if (fq[j].id.n === 0 || (fq[j].id.n !== 0 && fq[j].id.s[0] !== '@')) {
+          post(1, 'Input files is not FASTQ!');
           return 2;
         }
       }
-      if (
-        (eofs[0] === true && eofs[1] === false) ||
-        (eofs[0] === false && eofs[1] === true)
-      ) {
+      if ((eofs[0] === true && eofs[1] === false) || (eofs[0] === false && eofs[1] === true)) {
         post(1, "# of rows in mate file doesnt's match primary file!");
         return 2;
       } else if (eofs[0] === true && eofs[1] === true) {
@@ -1084,10 +1028,7 @@ self.onmessage = e => {
           const ri = i;
           if (fq[0].seq.s[li] === rc.seq.s[ri]) {
             fq[0].qual.s[li] = String.fromCharCode(
-              helper.max(
-                fq[0].qual.s[li].charCodeAt(0),
-                rc.qual.s[ri].charCodeAt(0)
-              )
+              helper.max(fq[0].qual.s[li].charCodeAt(0), rc.qual.s[ri].charCodeAt(0)),
             );
           } else {
             if (fq[0].qual.s[li].charCodeAt(0) > rc.qual.s[ri].charCodeAt(0)) {
@@ -1095,12 +1036,8 @@ self.onmessage = e => {
                 33 +
                   helper.min(
                     fq[0].qual.s[li].charCodeAt(0),
-                    helper.max(
-                      fq[0].qual.s[li].charCodeAt(0) -
-                        rc.qual.s[ri].charCodeAt(0),
-                      3
-                    )
-                  )
+                    helper.max(fq[0].qual.s[li].charCodeAt(0) - rc.qual.s[ri].charCodeAt(0), 3),
+                  ),
               );
             } else {
               fq[0].seq.s[li] = rc.seq.s[ri];
@@ -1108,19 +1045,13 @@ self.onmessage = e => {
                 33 +
                   helper.min(
                     rc.qual.s[ri].charCodeAt(0),
-                    helper.max(
-                      rc.qual.s[ri].charCodeAt(0) -
-                        fq[0].qual.s[li].charCodeAt(0),
-                      3
-                    )
-                  )
+                    helper.max(rc.qual.s[ri].charCodeAt(0) - fq[0].qual.s[li].charCodeAt(0), 3),
+                  ),
               );
             }
           }
         }
-        joins.push(
-          fq[0].seq.s.join("") + rc.seq.s.slice(besto).join("") + "\n"
-        );
+        joins.push(fq[0].seq.s.join('') + rc.seq.s.slice(besto).join('') + '\n');
       }
       // console.log(`modulo: ${helper.__modulo(nrec, steprec)}, nrec: ${nrec} steprec: ${steprec}`)
       if (helper.__modulo(nrec, steprec) === 0) {
@@ -1179,7 +1110,7 @@ self.onmessage = e => {
       is: [],
       ds: [],
       hdr: 0,
-      fileId
+      fileId,
     };
     for (let i = 0; i <= length_range; i++) {
       data.il.push([i, 0]);
@@ -1208,11 +1139,7 @@ self.onmessage = e => {
       if (seq_range.length === entry.length) {
         entry.type = 0;
       } else {
-        if (
-          filt_r > 0 &&
-          s_seq !== "" &&
-          count_seqs[i].seq.indexOf(s_seq) > 0
-        ) {
+        if (filt_r > 0 && s_seq !== '' && count_seqs[i].seq.indexOf(s_seq) > 0) {
           entry.type = 0;
         } else {
           if (entry.length > seq_range.length) {
@@ -1226,7 +1153,7 @@ self.onmessage = e => {
           }
         }
       }
-      if (!seq_hdr || seq_hdr === "") {
+      if (!seq_hdr || seq_hdr === '') {
         entry.hdr = -2;
       } else {
         entry.hdr = count_seqs[i].seq.indexOf(seq_hdr);
@@ -1253,12 +1180,12 @@ self.onmessage = e => {
           }
         }
         for (let j = 0; j < entry.origin.length; j++) {
-          if (entry.origin[j] !== "-") {
+          if (entry.origin[j] !== '-') {
             cpos += 1;
             if (cpos >= seq_range.length) {
               break;
             }
-            if (entry.origin[j + 1] === "-") {
+            if (entry.origin[j + 1] === '-') {
               data.il[cpos][1] += count_seqs[i].count;
             }
           }
@@ -1281,10 +1208,10 @@ self.onmessage = e => {
         }
         const originLoop = entry.origin.length;
         for (let j = 0; j <= originLoop; j++) {
-          if (entry.change[j] === "-") {
+          if (entry.change[j] === '-') {
             data.dl[cpos][1] += count_seqs[i].count;
           }
-          if (entry.origin[j] !== "-") {
+          if (entry.origin[j] !== '-') {
             cpos += 1;
           }
         }
@@ -1314,17 +1241,12 @@ self.onmessage = e => {
     data.standard_seq = seq_range;
     data.seq_target = seq_RGEN;
     data.seq_type = nucleases;
+    data.analyzerId = analyzerId;
     pgcallback(100);
     return data;
   };
 
   run_fastq_join(files, pgcallback, process_chunk, true);
-  const final_data = run_cas_analyser(
-    seq_range,
-    seq_hdr,
-    filt_n,
-    filt_r,
-    pgcallback
-  );
+  const final_data = run_cas_analyser(seq_range, seq_hdr, filt_n, filt_r, pgcallback);
   post(4, final_data);
 };

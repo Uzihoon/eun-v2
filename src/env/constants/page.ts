@@ -21,7 +21,7 @@ export const INDEL = {
 export const REPORT = {
   PAGE_ID: 'report',
   TITLE_ID: 'page.title.report',
-  PATH: '/report',
+  PATH: '/report/:reportId',
 } as const;
 
 export const NOMATCH = {

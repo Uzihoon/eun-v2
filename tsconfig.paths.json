@@ -6,7 +6,8 @@
       "~env/*": ["env/*"],
       "~lib/*": ["lib/*"],
       "~ui/*": ["app/ui/*"],
-      "~i18n": ["i18n/index"]
+      "~i18n": ["i18n/index"],
+      "~recoil/*": ["recoil/*"]
     }
   }
 }

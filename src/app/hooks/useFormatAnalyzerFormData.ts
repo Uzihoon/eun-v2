@@ -83,6 +83,7 @@ const useFormatAnalyzerFormData = () => {
           break;
         default:
           rgen_type = 2;
+          break;
       }
     }
 

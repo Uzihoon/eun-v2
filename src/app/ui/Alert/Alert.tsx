@@ -1,4 +1,5 @@
 import { css, styled } from 'styled-components';
+import layer from '~lib/styles/layer';
 import palette from '~lib/styles/palette';
 import space from '~lib/styles/space';
 import { themedPalette } from '~lib/styles/theme';
@@ -13,7 +14,7 @@ interface StyledAlertProps {
 interface AlertProps {
   type?: AlertType;
   header?: string;
-  content: string;
+  content: React.ReactElement | string;
 }
 
 const Alert: React.FC<AlertProps> = ({ type = 'INFO', header, content }) => {
@@ -38,6 +39,8 @@ const StyledAlert = styled.div<StyledAlertProps>`
   padding: ${space[2]} ${space[3]};
   border-radius: 10px;
   color: ${themedPalette.alert_txt};
+  z-index: ${layer.content};
+  position: relative;
 
   ${(props) => {
     switch (props.type) {
@@ -51,7 +54,7 @@ const StyledAlert = styled.div<StyledAlertProps>`
       case 'WARNING':
         return css``;
     }
-  }}
+  }};
 `;
 
 const AlertHeader = styled.div`
