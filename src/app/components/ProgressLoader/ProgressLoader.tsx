@@ -12,11 +12,11 @@ import {
 
 interface ProgressLoaderProps {
   progress: number;
-  progressInfo: { total: number; completed: number };
+  progressInfo: { request: number; complete: number };
 }
 
 const ProgressLoader: React.FC<ProgressLoaderProps> = ({ progress, progressInfo }) => {
-  const { total, completed } = progressInfo;
+  const { request, complete } = progressInfo;
   return (
     <Container>
       <Background />
@@ -24,7 +24,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = ({ progress, progressInfo 
         <ProgressTitle>{t.get('progress.analyzing.title')}</ProgressTitle>
         <Progress>{progress}%</Progress>
         <ProgressDescription>{t.get('progress.analyzing.description')}</ProgressDescription>
-        <ProgressInfo>{t.get('progress.analyzing.info', { progress: completed + 1, total })}</ProgressInfo>
+        <ProgressInfo>{t.get('progress.analyzing.info', { progress: complete + 1, total: request })}</ProgressInfo>
         <ProgressBar progress={progress} />
       </LoaderBox>
     </Container>

@@ -2,7 +2,7 @@ import { NUCLEOTIDE } from '~env/constants';
 import Form from '../Form';
 import { useForm } from 'react-hook-form';
 import { AnalyzerFormValues } from '~env/models/forms';
-import { FormHTMLAttributes, useCallback } from 'react';
+import { FormHTMLAttributes, useCallback, useEffect, useState } from 'react';
 import {
   FILES,
   FULL_SEQ,
@@ -26,10 +26,16 @@ import Alert from '~app/ui/Alert';
 import useRunAnalyzer from '~app/hooks/useRunAnalyzer';
 import ProgressLoader from '../ProgressLoader';
 import { FileList, FileName, WarningBox, WarningContent, WarningTitle } from './Analyzer.form.style';
+import { WORKER_STATUS } from '~env/models/worker';
+import { useNavigate } from 'react-router-dom';
 
 const AnalyzerForm: React.FC = () => {
+  const navigate = useNavigate();
+
+  const [analyzerId, setAnalyzerId] = useState('');
+
   const { error, dispatchFormat, invalid } = useFormatAnalyzerFormData();
-  const { runAnalyzer, loading, completed, progress, workers } = useRunAnalyzer();
+  const { error: analyzerErorr, runAnalyzer, loading, requestNum, completeNum, progress, status } = useRunAnalyzer();
 
   const { handleSubmit, control, getValues } = useForm<AnalyzerFormValues>({
     defaultValues: {
@@ -54,10 +60,17 @@ const AnalyzerForm: React.FC = () => {
           return;
         }
 
+        setAnalyzerId(analyzerData.analyzerId);
         runAnalyzer(analyzerData);
       })(event),
     [handleSubmit, dispatchFormat, runAnalyzer, error],
   );
+
+  useEffect(() => {
+    if (status === WORKER_STATUS.COMPLETE && analyzerId !== '') {
+      navigate(`/report/${analyzerId}`);
+    }
+  }, [status, analyzerId, navigate]);
 
   return (
     <>
@@ -91,6 +104,8 @@ const AnalyzerForm: React.FC = () => {
               header={t.get('alert.invalid.file.header')}
               type="ERROR"
             />
+          ) : analyzerErorr ? (
+            <Alert content={analyzerErorr} header={t.get('alert.analyzer.fail.header')} type="ERROR" />
           ) : null
         }
       >
@@ -182,12 +197,12 @@ const AnalyzerForm: React.FC = () => {
           defaultValue={NUCLEOTIDE[1]}
         />
       </Form>
-      {loading && (
+      {!analyzerErorr && loading && (
         <ProgressLoader
           progress={progress}
           progressInfo={{
-            total: workers,
-            completed,
+            request: requestNum,
+            complete: completeNum,
           }}
         />
       )}

@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { reportsState } from '~recoil/atom/report';
-import { Analyzer, Summary } from '~env/models/analyzer';
+import { Analyzer } from '~env/models/analyzer';
 import { WorkerMessage, WORKER_STATUS } from '~env/models/worker';
-import { Report } from '~env/models/report';
+import { AnalyzedData } from '~env/models/report';
 
 const useRunAnalyzer = () => {
-  const [workers, setWorkers] = useState(0);
-  const [completed, setCompleted] = useState(0);
+  const [requestNum, setRequestNum] = useState(0);
+  const [completeNum, setCompletNum] = useState(0);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [summary, setSummary] = useState<Summary[]>([]);
   const [status, setStatus] = useState<WORKER_STATUS>(WORKER_STATUS.IDLE);
+  const [id, setId] = useState('');
+  const [error, setError] = useState('');
 
   const setReports = useSetRecoilState(reportsState);
 
@@ -19,38 +20,49 @@ const useRunAnalyzer = () => {
     const { msgType, msg } = event.data;
 
     if (msgType === WORKER_STATUS.ERROR) {
+      setStatus(msgType);
+      setError(msg);
+      return;
     }
 
     if (msgType === WORKER_STATUS.LOADING) {
       if (msg === 100) {
-        setCompleted((c) => c + 1);
+        setCompletNum((c) => c + 1);
       }
       setProgress(Math.ceil(msg));
     }
 
     if (msgType === WORKER_STATUS.SUMMARY) {
-      setSummary([...summary, msg]);
-    }
-
-    if (msgType === WORKER_STATUS.COMPLETE) {
-      const { analyzerId } = msg as Report;
       setReports((oldReports) => ({
         ...oldReports,
-        [analyzerId]: [...(oldReports[analyzerId] || []), msg],
+        [id]: { summary: msg, analyzed: [] },
       }));
     }
 
-    setStatus(msgType);
+    if (msgType === WORKER_STATUS.COMPLETE) {
+      setReports((oldReports) => {
+        const analyzedData = oldReports[id]?.analyzed || [];
+
+        return {
+          ...oldReports,
+          [id]: {
+            ...oldReports[id],
+            analyzed: [...analyzedData, msg],
+          },
+        };
+      });
+    }
   };
 
   useEffect(() => {
-    if (workers === completed) {
+    if (requestNum !== 0 && requestNum === completeNum) {
       setLoading(false);
+      setStatus(WORKER_STATUS.COMPLETE);
     }
-  }, [workers, completed]);
+  }, [requestNum, completeNum]);
 
   const runAnalyzer = (analyzerData: Analyzer) => {
-    const { fileList, ...data } = analyzerData;
+    const { fileList, analyzerId, ...data } = analyzerData;
     let workerCount = 0;
 
     for (const key in fileList) {
@@ -69,11 +81,13 @@ const useRunAnalyzer = () => {
 
     setLoading(true);
     setProgress(0);
-    setWorkers(workerCount);
-    setCompleted(0);
+    setRequestNum(workerCount);
+    setCompletNum(0);
+    setId(analyzerId);
+    setStatus(WORKER_STATUS.LOADING);
   };
 
-  return { runAnalyzer, status, loading, workers, progress, completed };
+  return { runAnalyzer, status, error, loading, requestNum, progress, completeNum };
 };
 
 export default useRunAnalyzer;

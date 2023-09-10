@@ -41,6 +41,7 @@
   "alert.invalid.file.header": "We found invalid files",
   "alert.invalid.file.content": "Some files have invalid pattern. Please check the file pattern and file name again",
   "alert.invalid.file.title": "Invalid file list",
+  "alert.analyzer.fail.header": "Analysis failed",
 
   "progress.analyzing.title": "Analyzing...",
   "progress.analyzing.description": "Please do not close the browser and wait a moment until the analysis is complete.",

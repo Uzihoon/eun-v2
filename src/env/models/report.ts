@@ -1,4 +1,4 @@
-export interface Report {
+export interface AnalyzedData {
   analyzerId: string;
   change_target: any; // TODO
   changed: number;
@@ -21,6 +21,11 @@ export interface Report {
   totlr_count: number;
 }
 
+export interface Summary {
+  data: string;
+  type: string;
+}
+
 export interface Nucleotide {
   '-'?: number;
   A?: number;
@@ -41,5 +46,5 @@ export interface ReportTable {
 }
 
 export interface Reports {
-  [K: string]: Report[];
+  [K: string]: { analyzed: AnalyzedData[]; summary: Summary[] };
 }

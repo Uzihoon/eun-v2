@@ -6,6 +6,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { initIntl, t } from '~i18n';
 
 import './css/index.scss';
+import { RecoilRoot } from 'recoil';
 
 export const run = async () => {
   const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
@@ -17,7 +18,9 @@ export const run = async () => {
         <Helmet>
           <title>EUN</title>
         </Helmet>
-        <App />
+        <RecoilRoot>
+          <App />
+        </RecoilRoot>
       </HelmetProvider>
     </React.StrictMode>,
   );

@@ -434,7 +434,6 @@ self.onmessage = (e) => {
     changeSeq,
     fileId,
     nucleases,
-    analyzerId,
   } = data;
   let bp, m;
   if (rgen_type < 2) {
@@ -1241,7 +1240,6 @@ self.onmessage = (e) => {
     data.standard_seq = seq_range;
     data.seq_target = seq_RGEN;
     data.seq_type = nucleases;
-    data.analyzerId = analyzerId;
     pgcallback(100);
     return data;
   };
