@@ -34,7 +34,7 @@ const AnalyzerForm: React.FC = () => {
 
   const [analyzerId, setAnalyzerId] = useState('');
 
-  const { error, dispatchFormat, invalid } = useFormatAnalyzerFormData();
+  const { error: formatError, dispatchFormat, invalid } = useFormatAnalyzerFormData();
   const { error: analyzerErorr, runAnalyzer, loading, requestNum, completeNum, progress, status } = useRunAnalyzer();
 
   const { handleSubmit, control, getValues } = useForm<AnalyzerFormValues>({
@@ -56,14 +56,14 @@ const AnalyzerForm: React.FC = () => {
       handleSubmit((data) => {
         const analyzerData = dispatchFormat(data);
 
-        if (!analyzerData || error) {
+        if (!analyzerData || formatError) {
           return;
         }
 
         setAnalyzerId(analyzerData.analyzerId);
         runAnalyzer(analyzerData);
       })(event),
-    [handleSubmit, dispatchFormat, runAnalyzer, error],
+    [handleSubmit, dispatchFormat, runAnalyzer, formatError],
   );
 
   useEffect(() => {
@@ -78,7 +78,7 @@ const AnalyzerForm: React.FC = () => {
         noValidate
         onSubmit={onSubmit}
         error={
-          error ? (
+          formatError ? (
             <Alert
               content={
                 <>
