@@ -6,6 +6,7 @@ import indel from './indel';
 import report from './report';
 import reportDetail from './reportDetail';
 
-const routes: Route[] = [analyzer, convertor, indel, report, reportDetail];
+// const routes: Route[] = [analyzer, convertor, indel, report, reportDetail];
+const routes: Route[] = [analyzer, reportDetail];
 
 export default routes;

@@ -1,7 +1,6 @@
 import { NUCLEOTIDE } from '~env/constants';
 import { Nucleotide, SequenceType } from '~env/models/report';
 import { t } from '~i18n';
-import palette from '~lib/styles/palette';
 import sequenceColorList from '../colors/sequence';
 import {
   ReportBox,
@@ -44,9 +43,9 @@ const ReportSequenceGraph: React.FC<ReportSequenceGrphProps> = ({ total, target,
       </ReportTitleBox>
       <ReportContent>
         <SequenceColumn>
-          <SequenceCell />
+          <SequenceCell isTitle />
           {target.map((sequence, i) => (
-            <SequenceCell isTitle key={i}>
+            <SequenceCell isTitle key={i} isTargetSequence={sequence === targetSeq}>
               {sequence}
             </SequenceCell>
           ))}
@@ -54,7 +53,7 @@ const ReportSequenceGraph: React.FC<ReportSequenceGrphProps> = ({ total, target,
         <SequenceColumn>
           <SequenceRow>
             {NUCLEOTIDE.map((nuc) => (
-              <SequenceCell isTitle key={nuc}>
+              <SequenceCell isTitle key={nuc} isTargetSequence={nuc === changeSeq}>
                 {nuc}
               </SequenceCell>
             ))}
@@ -62,6 +61,9 @@ const ReportSequenceGraph: React.FC<ReportSequenceGrphProps> = ({ total, target,
           {change.map((seq, i) => (
             <SequenceRow key={i}>
               {NUCLEOTIDE.map((nuc, j) => {
+                if (target[i] === targetSeq) {
+                  console.log(nuc, changeSeq);
+                }
                 const isChangeCell = !!(nuc === changeSeq);
 
                 const value = seq[nuc]! > 0 ? +((seq[nuc]! / total) * 100).toFixed(1) : 0;
@@ -83,13 +85,7 @@ const ReportSequenceGraph: React.FC<ReportSequenceGrphProps> = ({ total, target,
                 let backGroundColor = sequenceColorList.find((color) => color.id === sequenceType)?.color;
 
                 return (
-                  <SequenceCell
-                    valueColor={valueColor}
-                    key={j}
-                    isFirst={i === 0}
-                    isLast={i === change.length - 1}
-                    isChangeCell={isChangeCell}
-                  >
+                  <SequenceCell valueColor={valueColor} key={j} isChangeCell={target[i] === targetSeq && isChangeCell}>
                     <SequenceCellBg opacity={opacity} backGroundColor={backGroundColor} />
                     {value}
                   </SequenceCell>

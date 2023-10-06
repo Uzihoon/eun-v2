@@ -10,13 +10,13 @@ const sequenceColorList: ReportColor[] = [
   {
     title: 'report.sequence.color.target',
     id: 'desired',
-    color: '#e54b4b',
+    color: '#61bfad',
     type: 'all',
   },
   {
     title: 'report.sequence.color.sub',
     id: 'undesired',
-    color: '#61bfad',
+    color: '#e54b4b',
     type: 'all',
   },
   {
@@ -28,7 +28,7 @@ const sequenceColorList: ReportColor[] = [
   {
     title: 'report.sequence.color.deletion',
     id: 'deletion',
-    color: '#91c6ff',
+    color: '#b8b8b8',
     type: 'table',
   },
 ];

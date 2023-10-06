@@ -38,15 +38,6 @@ const AnalyzerForm: React.FC = () => {
   const { error: analyzerErorr, runAnalyzer, loading, requestNum, completeNum, progress, status } = useRunAnalyzer();
 
   const { handleSubmit, control, getValues } = useForm<AnalyzerFormValues>({
-    defaultValues: {
-      [INDEX_PATTERN]: '_L001_',
-      [FULL_SEQ]:
-        'ACCTCTTATCTTCCTCCCACAGCTCCTGGGCAACGTGCTGGTCTGTGTGCTGGCCCATCACTTTGGCAAAGAATTCACCCCACCAGTGCAGGCTGCCTATCAGAAAGTGGTGGCTGGTGTGGCTAATGCCCTGGCCCACAAGTATCACTAAGCTCGCTTTCTTGCTGTCCAATTTCTATTAAAGGTTCCTTTGTTCCCTAAGTCCAACT',
-      [R_GEN_SEQ]: 'TCAGAAAGTGGTGGCTGGTG',
-      [TARGET_SEQ]: 'A',
-      [CHANGE_SEQ]: 'G',
-      [END_RANGE]: 70 as any,
-    },
     shouldUnregister: true,
     shouldFocusError: true,
   });

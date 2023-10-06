@@ -50,7 +50,7 @@
   "report.summary.title": "Reference Amplicon Sequence",
   "report.result.title": "Summary",
   "report.table.title": "Sequence Information",
-  "report.graph.title": "Sequence graph",
+  "report.graph.title": "Sequence Information (%)",
   "report.change.title": "Result",
 
   "report.summary.color.primerSeq": "Comparision sequence",

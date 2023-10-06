@@ -129,8 +129,7 @@ export const SequenceCell = styled.div<{
   isTitle?: boolean;
   valueColor?: string;
   isChangeCell?: boolean;
-  isFirst?: boolean;
-  isLast?: boolean;
+  isTargetSequence?: boolean;
 }>`
   flex: 1;
   text-align: center;
@@ -140,23 +139,21 @@ export const SequenceCell = styled.div<{
   font-weight: ${(props) => (props.isTitle ? 'bold' : 'normal')};
   position: relative;
   ${(props) =>
+    props.isTitle &&
+    css`
+      background-color: ${themedPalette.bg_table_header};
+    `}
+  ${(props) =>
     props.isChangeCell &&
     css`
-      border-top: 2px solid ${palette.red.l500};
-      border-bottom: 2px solid ${palette.red.l500};
+      // border: 2px solid ${palette.red.l500};
     `}
 
   ${(props) =>
-    props.isChangeCell &&
-    props.isFirst &&
+    props.isTargetSequence &&
     css`
-      border-left: 2px solid ${palette.red.l500};
-    `}
-    ${(props) =>
-    props.isChangeCell &&
-    props.isLast &&
-    css`
-      border-right: 2px solid ${palette.red.l500};
+      background-color: ${themedPalette.primary_color};
+      color: ${palette.white};
     `}
   ${center}
 `;
