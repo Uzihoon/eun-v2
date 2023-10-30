@@ -35,7 +35,9 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "craco eject"
+    "eject": "craco eject",
+    "predeploy": "npm run build",
+    "deploy": "aws s3 sync build/ s3://eun-v2-project --delete"
   },
   "eslintConfig": {
     "extends": [
