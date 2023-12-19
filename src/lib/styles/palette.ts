@@ -37,6 +37,10 @@ const palette = {
     l900: '#1b0c33',
   },
 
+  blue: {
+    l500: '#7390ff',
+  },
+
   white: '#ffffff',
   point: '#d02885',
 } as const;

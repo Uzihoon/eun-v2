@@ -31,10 +31,24 @@ const popInFromBottom = keyframes`
   }
 `;
 
+const popUpFromRight = keyframes`
+  0% {
+    position: relative;
+    opacity: 0;
+    transform: translateX(300px);
+  }
+  100% {
+    position: relative;
+    opacity: 1;
+    transform: translateX(0px);
+  }
+`;
+
 const animation = {
   fadeIn,
   fadeOut,
   popInFromBottom,
+  popUpFromRight,
 };
 
 export default animation;

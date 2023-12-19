@@ -77,5 +77,10 @@
   "report.title.result.insertions": "Insertions",
   "report.title.result.deletions": "Deletions",
 
-  "report.label.result": "Changed rate"
+  "report.label.result": "Changed rate",
+
+  "helpPanel.nucleases.title": "Used Cas Ortholog",
+  "helpPanel.nucleases.content": "Currently, the Used Cas Ortholog supports only `SpCas9 from Streptococcus pyogenes: 5'-NGG-3'.` If you require compatibility with a different PAM sequence or Cas ortholog, please feel free to reach out for further inquiries",
+
+  "info": "Info"
 }

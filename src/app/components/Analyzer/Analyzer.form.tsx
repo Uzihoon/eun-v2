@@ -172,7 +172,12 @@ const AnalyzerForm: React.FC = () => {
           label="form.label.standardRange"
           placeholder="form.desc.standardRange"
         />
-        <FormField label={t.get('form.label.nucleases')} required>
+        <FormField
+          label={t.get('form.label.nucleases')}
+          required
+          helpPanelContent="helpPanel.nucleases.content"
+          helpPanelTitle="helpPanel.nucleases.title"
+        >
           <Disabled text="SpCas9 from Streptococcus pyogenes: 5'-NGG-3'" />
         </FormField>
         <AnalyzerRadioGroupFormField

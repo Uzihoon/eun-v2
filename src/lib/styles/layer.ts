@@ -4,6 +4,7 @@ const layer = {
   header: 5,
   content: 10,
   loader: 100,
+  helpPanel: 200,
 };
 
 export default layer;
